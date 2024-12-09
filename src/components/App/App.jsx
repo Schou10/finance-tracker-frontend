@@ -22,9 +22,12 @@ import AppConetext from "../../contexts/AppContext";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 import "./App.css";
-axios.defaults.baseURL = "http://localhost:3001";
+import { baseUrl } from "../../utils/constants.js";
+
+axios.defaults.baseURL = baseUrl;
+
 function App() {
-  const [linkToken, setLinkToken] = useState(null);
+  const [linkToken, setLinkToken] = useState();
   const [activeModal, setActiveModal] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -108,14 +111,6 @@ function App() {
       });
   };
 
-  //Plaid
-  const { open, ready } = usePlaidLink({
-    token: "<GENERATED_LINK_TOKEN>",
-    onSuccess: (public_token, metadata) => {
-      // send public_token to server
-    },
-  });
-
   // Use Effects
   // Get User Info from Token for auto login
   useEffect(() => {
@@ -142,11 +137,18 @@ function App() {
         const response = await axios.post("/create_link_token", {
           clientUserId: currentUser._id,
         });
+        setLinkToken(response.data.link_token);
         console.log("Response:", response.data);
       }
       fetchPlaidToken();
     }
   }, [currentUser]);
+  const { open, ready } = usePlaidLink({
+    token: linkToken,
+    onSuccess: (public_token, metadata) => {
+      // send public_token to server
+    },
+  });
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, isLoggedIn }}>

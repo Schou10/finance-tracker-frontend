@@ -4,7 +4,7 @@ import "./Profile.css";
 function Profile({ onChangeProfileClick, open, ready }) {
   return (
     <div className="profile">
-      <section className="profile__sidebar">
+      <section className="profile__SideBar">
         <SideBar onChangeProfileClick={onChangeProfileClick} />
       </section>
       <section className="link__section">
