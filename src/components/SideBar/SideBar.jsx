@@ -7,11 +7,7 @@ import PlaidButton from "../PlaidButton/PlaidButton";
 import "./SideBar.css";
 
 function SideBar({ onChangeProfileClick }) {
-  let {
-    currentUser: user,
-    linkToken,
-    publicToken,
-  } = useContext(CurrentUserContext) || {};
+  let { currentUser: user, linkToken } = useContext(CurrentUserContext) || {};
   const { setIsLoggedIn, setUser } = useContext(AppContext);
 
   const navigate = useNavigate();
@@ -41,9 +37,7 @@ function SideBar({ onChangeProfileClick }) {
       <p className="sidebar__button" onClick={signOut}>
         Log Out
       </p>
-      {publicToken ? (
-        <p>{publicToken}</p>
-      ) : linkToken ? (
+      {linkToken ? (
         <PlaidButton />
       ) : (
         <p className="sidebar__button">Loading...</p>

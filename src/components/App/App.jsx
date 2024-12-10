@@ -29,6 +29,7 @@ axios.defaults.baseURL = baseUrl;
 function App() {
   const [linkToken, setLinkToken] = useState();
   const [publicToken, setPublicToken] = useState();
+  const [accessToken, setAccessToken] = useState();
   const [activeModal, setActiveModal] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -152,6 +153,8 @@ function App() {
         linkToken,
         publicToken,
         setPublicToken,
+        accessToken,
+        setAccessToken,
       }}
     >
       <AppConetext.Provider

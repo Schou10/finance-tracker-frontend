@@ -8,16 +8,18 @@ import "./PlaidButton.css";
 axios.defaults.baseURL = baseUrl;
 
 function PlaidButton() {
-  let { linkToken, publicToken, setPublicToken } =
-    useContext(CurrentUserContext) || {};
+  const {
+    linkToken,
+    publicToken,
+    setPublicToken,
+    accessToken,
+    setAccessToken,
+  } = useContext(CurrentUserContext) || {};
   const { open, ready } = usePlaidLink({
     token: linkToken,
     onSuccess: (public_token, metadata) => {
       setPublicToken(public_token);
-      setTimeout(
-        () => console.log("Public Token set (delayed):", publicToken),
-        1
-      );
+      console.log("Public Token", publicToken);
     },
     onExit: (err, metadata) => {
       if (err) {
@@ -29,15 +31,34 @@ function PlaidButton() {
   useEffect(() => {
     console.log("useEffect triggered with publicToken:", publicToken);
     if (publicToken) {
-      async function fetchPlaidToken() {
-        console.log("Fetching Plaid Token");
-        let accessToken = await axios.post("/exchange_public_token", {
-          public_token: publicToken,
-        });
-        setAccessToken(accessToken.data.access_token);
-        console.log("Access Token:", accessToken.data);
+      console.log(
+        "Preparing to exchange accesss token with publicToken:",
+        publicToken
+      );
+      async function fetchData() {
+        try {
+          const accessTokenRes = await axios.post("/exchange_public_token", {
+            public_token: publicToken,
+          });
+          console.log(
+            "Recieved access_token:",
+            accessTokenRes.data.access_token
+          );
+          setAccessToken(accessTokenRes.data.access_token);
+          console.log(
+            "Retrieving Auth with access_token:",
+            accessTokenRes.data.access_token
+          );
+          const authRes = await axios.post("/auth", {
+            access_token: accessTokenRes.data.access_token,
+            headers: { "Content-Type": "application/json" },
+          });
+          console.log("Auth Date:", authRes.data);
+        } catch (err) {
+          console.error("Error in fetching Plaid data:", err);
+        }
       }
-      fetchPlaidToken();
+      fetchData();
     }
   }, [publicToken]);
 
