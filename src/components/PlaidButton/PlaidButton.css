@@ -1,0 +1,19 @@
+.plaid__button {
+  margin: 10px 20px 0;
+  border: none;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  line-height: 1.5;
+  padding: 10px 20px;
+  background-color: #000; /* Brand color for CTA */
+  color: #fff; /* Contrasting text color */
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.plaid__button:hover {
+  background-color: rgb(50, 50, 50);
+}

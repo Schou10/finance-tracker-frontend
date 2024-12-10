@@ -3,18 +3,23 @@ import { removeToken } from "../../utils/token";
 import { useNavigate } from "react-router-dom";
 import AppContext from "../../contexts/AppContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import PlaidButton from "../PlaidButton/PlaidButton";
 import "./SideBar.css";
 
 function SideBar({ onChangeProfileClick }) {
-  let { currentUser: user } = useContext(CurrentUserContext) || {};
-  const { setIsLoggedIn, setUserData } = useContext(AppContext);
+  let {
+    currentUser: user,
+    linkToken,
+    publicToken,
+  } = useContext(CurrentUserContext) || {};
+  const { setIsLoggedIn, setUser } = useContext(AppContext);
 
   const navigate = useNavigate();
 
   function signOut() {
     removeToken();
     navigate("/");
-    setUserData({});
+    setUser({});
     setIsLoggedIn(false);
   }
 
@@ -36,6 +41,13 @@ function SideBar({ onChangeProfileClick }) {
       <p className="sidebar__button" onClick={signOut}>
         Log Out
       </p>
+      {publicToken ? (
+        <p>{publicToken}</p>
+      ) : linkToken ? (
+        <PlaidButton />
+      ) : (
+        <p className="sidebar__button">Loading...</p>
+      )}
     </section>
   );
 }

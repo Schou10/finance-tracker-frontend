@@ -6,14 +6,14 @@
 
 .sidebar__section {
   display: flex;
-  margin-bottom: 16px;
+  margin: 10px 0 16px 20px;
 }
 
 .sidebar__avatar {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  border: rgba(0, 0, 0, 0.5) 1px solid;
+  border: #0e4d0d 3px solid;
 }
 
 .sidebar__avatar_none {
@@ -27,6 +27,9 @@
 .sidebar__username {
   margin-left: 16px;
   width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .sidebar__button {
@@ -34,5 +37,5 @@
   font-weight: 700;
   font-size: 1em;
   line-height: 1.5;
-  margin: 8px 0 0;
+  margin: 8px 20px 0;
 }

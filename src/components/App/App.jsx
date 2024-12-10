@@ -28,6 +28,7 @@ axios.defaults.baseURL = baseUrl;
 
 function App() {
   const [linkToken, setLinkToken] = useState();
+  const [publicToken, setPublicToken] = useState();
   const [activeModal, setActiveModal] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -138,20 +139,21 @@ function App() {
           clientUserId: currentUser._id,
         });
         setLinkToken(response.data.link_token);
-        console.log("Response:", response.data);
       }
       fetchPlaidToken();
     }
   }, [currentUser]);
-  const { open, ready } = usePlaidLink({
-    token: linkToken,
-    onSuccess: (public_token, metadata) => {
-      // send public_token to server
-    },
-  });
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser, isLoggedIn }}>
+    <CurrentUserContext.Provider
+      value={{
+        currentUser,
+        isLoggedIn,
+        linkToken,
+        publicToken,
+        setPublicToken,
+      }}
+    >
       <AppConetext.Provider
         value={{
           isLoggedIn,
@@ -176,8 +178,7 @@ function App() {
                   <ProtectedRoute>
                     <Profile
                       onChangeProfileClick={handleChangeProfileClick}
-                      open={open}
-                      ready={ready}
+                      linkToken={linkToken}
                     />
                   </ProtectedRoute>
                 }

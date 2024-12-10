@@ -1,16 +1,19 @@
 import SideBar from "../Sidebar/Sidebar.jsx";
+import Balance from "../Balance/Balance.jsx";
+import Transactions from "../Transactions/Transactions.jsx";
+import Goals from "../Goals/Goals.jsx";
 import "./Profile.css";
 
-function Profile({ onChangeProfileClick, open, ready }) {
+function Profile({ onChangeProfileClick }) {
   return (
     <div className="profile">
       <section className="profile__SideBar">
         <SideBar onChangeProfileClick={onChangeProfileClick} />
       </section>
-      <section className="link__section">
-        <button onClick={() => open()} disabled={!ready}>
-          Connect a bank account
-        </button>
+      <section className="profile__Main">
+        <Balance />
+        <Transactions />
+        <Goals />
       </section>
     </div>
   );

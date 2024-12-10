@@ -40,7 +40,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: rgba(0, 0, 0, 0.5) 1px solid;
+  border: #0e4d0d 3px solid;
 }
 
 .header__avatar_none {

@@ -6,9 +6,12 @@ function TransactionCard(transaction) {
   return (
     <li className="card" onClick={handleCardClick}>
       <div className="card__heading">
-        <h2 className="card__title">{item.name}</h2>
+        <h2 className="card__title">{transaction.name}</h2>
       </div>
-      <p>Ammount: {transaction.ammount}</p>
+      <p>
+        Ammount: {transaction.amount > 0 ? "+" : "-"}$
+        {Math.abs(transaction.amount)}
+      </p>
       <p></p>
     </li>
   );
