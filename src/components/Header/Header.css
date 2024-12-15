@@ -1,0 +1,81 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 20px 20px 10px;
+  background-color: #8c8c8c;
+}
+
+.header__logo {
+  margin-right: 24px;
+}
+
+.header__date {
+  margin: 0;
+  color: #fff;
+  font-size: 1.2em;
+}
+
+.header__add-clothes-btn {
+  margin: 0 20px 0 0;
+  border: none;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+.header__user-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  margin: 0 0 0 auto;
+}
+
+.header__username {
+  margin: 0;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: #0e4d0d 3px solid;
+}
+
+.header__avatar_none {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+}
+
+.header__button {
+  margin: 0 20px 0 0;
+  border: none;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  line-height: 1.5;
+  padding: 10px 20px;
+  background-color: #0077cc; /* Brand color for CTA */
+  color: #fff; /* Contrasting text color */
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.header__button:hover {
+  background-color: rgb(0, 95, 163); /* Darker shade for hover effect */
+}
+
+@media screen and (max-width: 539px) {
+  .header__user-container {
+    display: none;
+  }
+}

@@ -1,0 +1,75 @@
+.card {
+  margin: 20px 0;
+  border-radius: 10px;
+  padding: 10px;
+  background: #555;
+  color: #fff;
+  box-shadow: 1px 1px 10px #000;
+  width: 50%;
+  transition: width 0.5s;
+  position: relative;
+}
+.card:hover {
+  width: 75%;
+}
+
+.card-increase {
+  background: linear-gradient(to bottom, #005500, #fff);
+}
+
+.card-decrease {
+  background: linear-gradient(to bottom, #550000, #fff);
+}
+.card__headiing {
+}
+.card__title {
+  margin: 0;
+  max-width: 75%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.card__content {
+  display: flex;
+  align-items: center;
+}
+
+.card__amount {
+  margin: 0 20px 0;
+}
+
+.card__amount span {
+  font-size: 1.5em;
+}
+
+.amount-increase {
+  color: #005500;
+}
+
+.amount-decrease {
+  color: #550000;
+}
+
+.card__image-background {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: calc(100% - 50%);
+  right: 0;
+}
+
+.image-increase {
+  background: linear-gradient(to top right, #005500, #fff);
+}
+
+.image-decrease {
+  background: linear-gradient(to top right, #550000, #fff);
+}
+
+.card__image {
+  width: 50%;
+}
