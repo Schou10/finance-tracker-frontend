@@ -1,0 +1,30 @@
+.goals {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 75%;
+  margin: 0 auto 20px 20px;
+}
+
+.goals h2 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+.goal__item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.goal__name {
+  font-size: 1rem;
+}
+
+.goal__progress {
+  font-size: 0.9rem;
+  color: #555;
+}
