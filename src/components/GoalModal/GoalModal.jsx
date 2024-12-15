@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import AppContext from "../../contexts/AppContext";
+import AppContext from "../../context/AppContext.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 function GoalModal({ handleGoal, isOpen, onClose }) {
   // Goal Data

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/Logo.svg";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../context/CurrentUserContext";
 import "./Header.css";
 
 function Header({ newGoal, handleRegisterClick, handleLoginClick }) {

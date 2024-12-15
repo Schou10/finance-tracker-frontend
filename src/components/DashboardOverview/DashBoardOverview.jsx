@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../context/CurrentUserContext";
 import RecentTransactions from "../RecentTransactions/RecentTransactions";
 import BudgetOverview from "../BudgetOverview/BudgetOverview";
 import Charts from "../Charts/Charts";

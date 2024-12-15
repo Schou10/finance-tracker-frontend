@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 import axios from "axios";
 import { usePlaidLink } from "react-plaid-link";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../context/CurrentUserContext";
 import { baseUrl } from "../../utils/constants";
 import "./PlaidButton.css";
 

@@ -1,5 +1,4 @@
-import "./AccountCard.css";
-import { getAccountIcon } from "../../utils/getAccountIcon";
+import { getAccountIcon } from "../../utils/getIcons";
 
 function AccountCard({ account }) {
   return (

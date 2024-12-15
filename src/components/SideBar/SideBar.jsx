@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { removeToken } from "../../utils/token";
+import { removeToken } from "../../utils/token.js";
 import { useNavigate } from "react-router-dom";
-import AppContext from "../../contexts/AppContext";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import AppContext from "../../context/AppContext.js";
+import CurrentUserContext from "../../context/CurrentUserContext.js";
 import PlaidButton from "../PlaidButton/PlaidButton";
 import "./SideBar.css";
 

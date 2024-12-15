@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../context/CurrentUserContext";
 import WelcomeSection from "../WelcomeSection/WelcomeSection";
-import FeaturesOverview from "../FeaturesOverview/FeaturesOverview";
-import DashboardOverview from "../DashboardOverview/DashboardOverview";
+import FeaturesOverview from "../FeatureOverview/FeaturesOverview";
+import DashboardOverview from "../DashboardOverview/DashBoardOverview";
 import "./Main.css";
 
 function Main({}) {

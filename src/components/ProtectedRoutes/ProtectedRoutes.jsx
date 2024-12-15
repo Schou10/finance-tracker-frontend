@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import AppContext from "../../contexts/AppContext";
+import AppContext from "../../context/AppContext.js";
 
 // New prop - anonymous. This prop will be used to indicate routes
 // that can be visited anonymously (i.e., without authorization).

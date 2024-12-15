@@ -10,8 +10,8 @@ import {
   syncAccounts,
   syncTransactions,
 } from "../../utils/plaidApi.js";
-import CurrentUserContext from "../../contexts/CurrentUserContext.js";
-import AppContext from "../../contexts/AppContext.js";
+import CurrentUserContext from "../../context/CurrentUserContext.js";
+import AppContext from "../../context/AppContext.js";
 
 function Profile({ onChangeProfileClick }) {
   const { publicToken } = useContext(CurrentUserContext) || {};

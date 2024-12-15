@@ -75,7 +75,10 @@
 }
 
 @media screen and (max-width: 539px) {
+  .header {
+    flex-direction: column;
+  }
   .header__user-container {
-    display: none;
+    margin: 0;
   }
 }
