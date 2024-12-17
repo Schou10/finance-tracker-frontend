@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 0 20px;
+}
+
+.footer__caption,
+.footer__date {
+  font-weight: 500;
+  margin: 0;
+}

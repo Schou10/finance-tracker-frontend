@@ -1,0 +1,59 @@
+@import url("../Sections/Sections.css");
+.accounts {
+}
+
+.accounts__title {
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.accounts__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.account__name {
+  font-size: 1rem;
+}
+
+.account__card {
+  border-radius: 10px;
+  padding: 15px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: rgb(169, 169, 169);
+  color: black;
+}
+
+.account__header {
+}
+
+.account__icon {
+  width: 30px;
+  height: 30px;
+}
+
+.account__name {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.account__balance {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.account__balance.negative {
+  color: #f44336;
+}
+
+.account__type {
+  font-size: 0.9rem;
+  color: #525252;
+}

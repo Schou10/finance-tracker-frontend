@@ -1,0 +1,19 @@
+.app {
+  font-family: Cabinet Grotesk, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  line-height: 1.5;
+  height: 100%;
+}
+
+.app__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1360px;
+  margin: 0 auto;
+  height: 100%;
+  background-color: transparent;
+  margin: 0 auto;
+  background-color: #fff;
+}

@@ -1,0 +1,79 @@
+.card {
+  margin: 20px 0;
+  border-radius: 10px;
+  padding: 10px;
+  background: #555;
+  color: #fff;
+  box-shadow: 0px 0px 10px #000;
+  width: 50%;
+  transition: width 0.5s;
+  position: relative;
+  animation: move-background 20s linear infinite;
+}
+.card:hover {
+  width: 75%;
+}
+
+.card-increase {
+  background: linear-gradient(135deg, #11200d 20%, #4b8a3a 50%, #11200d 80%);
+}
+
+.card-decrease {
+  background: linear-gradient(135deg, #11200d 20%, #8a3a4b 50%, #11200d 80%);
+}
+.card__headiing {
+}
+.card__title {
+  margin: 0;
+  max-width: 75%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.card__content {
+  display: flex;
+  align-items: center;
+}
+
+.card__amount,
+.card__date {
+  margin: 0 20px 0;
+}
+
+.card__amount span {
+  font-size: 1.5em;
+}
+
+.card__image-background {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: calc(100% - 50%);
+  right: 0;
+}
+
+.image-increase {
+  background: linear-gradient(to top right, #005500, #fff);
+}
+
+.image-decrease {
+  background: linear-gradient(to top right, #550000, #fff);
+}
+
+.card__image {
+  width: 50%;
+}
+
+@keyframes move-background {
+  0% {
+    background-position: 0px;
+  }
+
+  100% {
+    background-position: 1075px;
+  }
+}
