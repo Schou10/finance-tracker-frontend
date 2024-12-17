@@ -1,4 +1,4 @@
-import SideBar from "../Sidebar/Sidebar.jsx";
+import SideBar from "../SideBar/SideBar.jsx";
 import Accounts from "../Accounts/Accounts.jsx";
 import Transactions from "../Transactions/Transactions.jsx";
 import Goals from "../Goals/Goals.jsx";
