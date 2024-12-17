@@ -11,9 +11,9 @@ There are two pages the main page where users can see their previous transaction
 
 This is where you can find the links to my server Which is set up using the cloud
 
-- Find the webpage, click [here](https://FT.zanity.net)!
-- This is the link to the www webpage, click [here](https://www.FT.zanity.net)!
-- Find the link to the API server, click [here](https://api.FT.zanity.net)!
+- Find the webpage, click [here](https://finance-tracker.zanity.net)!
+- This is the link to the www webpage, click [here](https://www.finance-tracker.zanity.net)!
+- Find the link to the API server, click [here](https://api.finance-tracker.zanity.net)!
 
 ## Figma
 
