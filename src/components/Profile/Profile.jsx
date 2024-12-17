@@ -32,6 +32,7 @@ function Profile({ onChangeProfileClick }) {
           item_id: accountsData.item.item_id,
         });
         const transactionData = await syncTransactions();
+        console.log(transactionData);
         setTransactions(transactionData);
         await saveTransactionData(transactionData);
       } catch (err) {

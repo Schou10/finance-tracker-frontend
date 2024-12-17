@@ -3,7 +3,7 @@ import "./Accounts.css";
 
 function Accounts({ accounts }) {
   return (
-    <section className="accounts">
+    <section className="accounts section">
       <h2 className="accounts__title">User Accounts</h2>
       <ul className="accounts__list">
         {accounts.map((account) => (

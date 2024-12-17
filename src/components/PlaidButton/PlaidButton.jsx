@@ -2,10 +2,7 @@ import { useEffect, useContext } from "react";
 import axios from "axios";
 import { usePlaidLink } from "react-plaid-link";
 import CurrentUserContext from "../../context/CurrentUserContext";
-import { baseUrl } from "../../utils/constants";
 import "./PlaidButton.css";
-
-axios.defaults.baseURL = baseUrl;
 
 function PlaidButton() {
   const {
@@ -26,7 +23,24 @@ function PlaidButton() {
     },
   });
 
-  useEffect(() => {});
+  useEffect(() => {
+    if (publicToken) {
+      axios
+        .post("/exchange_public_token", { public_token: publicToken })
+        .then((response) => {
+          const accessToken = response.data.access_token;
+          axios.post(
+            "/accounts",
+            { access_token: accessToken },
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+              },
+            }
+          );
+        });
+    }
+  }, [publicToken]);
 
   return (
     <button className="plaid__button" onClick={() => open()} disabled={!ready}>

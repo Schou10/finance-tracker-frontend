@@ -1,16 +1,17 @@
 .profile {
+  background: transparent;
   display: flex;
   justify-content: space-between;
   min-height: 100vh;
+  color: #fff;
 }
 
 .profile__SideBar {
   color: #fff;
-  background: linear-gradient(to bottom, #1b2a37, #fff);
+  background: linear-gradient(to bottom, #1b2a37, rgba(255, 255, 255, 0));
 }
 
 .profile__Main {
   border-radius: 10px;
-  background-color: #889;
   width: 75%;
 }

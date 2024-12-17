@@ -17,6 +17,8 @@ import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 import "./App.css";
 import GoalModal from "../GoalModal/GoalModal.jsx";
+import Loader from "../Loader/Loader.jsx";
+import TransactionModal from "../TransactionModal/TransactionModal.jsx";
 
 axios.defaults.baseURL = baseUrl;
 // Interceptor to automatically include the Authorization header
@@ -39,6 +41,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [accounts, setAccounts] = useState([]);
   const [transactions, setTransactions] = useState([]);
+  const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setUser] = useState({
     _id: "",
     name: "",
@@ -49,8 +52,11 @@ function App() {
 
   const navigate = useNavigate();
 
-  const closeActiveModal = () => setActiveModal(""); // Close modals
-  const handleGoalClick = () => setActiveModal("goal"); // Transaction modal
+  const closeActiveModal = () => {
+    setActiveModal("");
+    setSelectedCard({});
+  }; // Close modals
+  const handleGoalClick = () => setActiveModal("goal"); // Goal modal
   const handleChangeProfileClick = () => setActiveModal("edit-profile"); // Profile Change Data Modal
 
   const handleSwitchLogin_SignUp = (e) => {
@@ -129,6 +135,12 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
+  const handleCardClick = (card) => {
+    setActiveModal("preview");
+    setSelectedCard(card);
+    console.log("Card Clicked", card);
+  };
+
   const fetchAccounts = async () => {
     try {
       const res = await axios.get("/accounts");
@@ -203,6 +215,8 @@ function App() {
           setAccounts,
           transactions,
           setTransactions,
+          handleCardClick,
+          selectedCard,
         }}
       >
         <div className="app">
@@ -259,8 +273,9 @@ function App() {
               handleGoal={handleGoal}
               isOpen={activeModal}
               onClose={closeActiveModal}
-              updateUser={handleUpdateUser}
             />
+            <TransactionModal isOpen={activeModal} onClose={closeActiveModal} />
+            {isLoading ? <Loader /> : null}
           </div>
         </div>
       </AppConetext.Provider>

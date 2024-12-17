@@ -1,5 +1,4 @@
 .app {
-  background-color: #e5e5e5;
   font-family: Cabinet Grotesk, Arial, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 1em;
@@ -14,6 +13,7 @@
   max-width: 1360px;
   margin: 0 auto;
   height: 100%;
-  background: rgb(255, 255, 255);
+  background-color: transparent;
   margin: 0 auto;
+  background-color: #fff;
 }

@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   padding: 20px 20px 10px;
-  background-color: #8c8c8c;
+  background-color: #000000aa;
 }
 
 .header__logo {
@@ -74,7 +74,7 @@
   background-color: rgb(0, 95, 163); /* Darker shade for hover effect */
 }
 
-@media screen and (max-width: 539px) {
+@media screen and (max-width: 730px) {
   .header {
     flex-direction: column;
   }

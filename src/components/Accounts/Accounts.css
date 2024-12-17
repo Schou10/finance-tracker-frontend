@@ -1,11 +1,5 @@
+@import url("../Sections/Sections.css");
 .accounts {
-  background-color: #ffffff;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 75%;
-  margin: 20px auto 20px 20px;
 }
 
 .accounts__title {
@@ -27,13 +21,13 @@
 }
 
 .account__card {
-  background: #ffffff;
-  border: 1px solid #ddd;
   border-radius: 10px;
   padding: 15px;
   width: 200px;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: rgb(169, 169, 169);
+  color: black;
 }
 
 .account__header {
@@ -61,5 +55,5 @@
 
 .account__type {
   font-size: 0.9rem;
-  color: #777;
+  color: #525252;
 }

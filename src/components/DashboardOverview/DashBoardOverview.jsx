@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
-import RecentTransactions from "../RecentTransactions/RecentTransactions";
+import Transactions from "../Transactions/Transactions";
 import BudgetOverview from "../BudgetOverview/BudgetOverview";
 import Charts from "../Charts/Charts";
 
@@ -11,7 +11,7 @@ const DashboardOverview = () => {
     <section className="dashboard-overview">
       <h1 className="dashboard-overview__title">Welcome back, {user.name}</h1>
       <BudgetOverview />
-      <RecentTransactions />
+      <Transactions />
       <Charts />
     </section>
   );

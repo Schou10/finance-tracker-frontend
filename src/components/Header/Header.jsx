@@ -4,7 +4,7 @@ import logo from "../../assets/Logo.svg";
 import CurrentUserContext from "../../context/CurrentUserContext";
 import "./Header.css";
 
-function Header({ newGoal, handleRegisterClick, handleLoginClick }) {
+function Header({ newGoalClick, handleRegisterClick, handleLoginClick }) {
   let { currentUser: user, isLoggedIn } = useContext(CurrentUserContext) || {};
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -23,7 +23,7 @@ function Header({ newGoal, handleRegisterClick, handleLoginClick }) {
           <button
             className="header__new-goal-btn header__button"
             type="button"
-            onClick={newGoal}
+            onClick={newGoalClick}
           >
             + New Goal
           </button>

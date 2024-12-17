@@ -41,7 +41,7 @@ function GoalModal({ handleGoal, isOpen, onClose }) {
       switchText={""}
     >
       <label htmlFor="goal_name" className="modal__label">
-        <legend className="modal__legend">Email*</legend>
+        <legend className="modal__legend">Goal Name*</legend>
         <input
           type="text"
           className="modal__input"
@@ -55,7 +55,7 @@ function GoalModal({ handleGoal, isOpen, onClose }) {
         <span className={""} id="goal-name-input-error"></span>
       </label>
       <label htmlFor="goal_description" className="modal__label">
-        <legend className="modal_legend">Password*</legend>
+        <legend className="modal_legend">Goal Description*</legend>
         <textarea
           className="modal__input"
           id="goal_description"
@@ -71,12 +71,11 @@ function GoalModal({ handleGoal, isOpen, onClose }) {
       </label>
       <label htmlFor="goal_date" className="modal__label">
         <legend className="modal_legend">Date*</legend>
-        <textarea
+        <input
           type="date"
           className="modal__input"
-          id="goal_description"
+          id="goal_date"
           name="date"
-          placeholder={new Date()}
           required
           value={data.date}
           onChange={handleChange}

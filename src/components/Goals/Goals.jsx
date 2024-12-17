@@ -2,7 +2,7 @@ import "./Goals.css";
 
 function Goals({ goals = [] }) {
   return (
-    <section className="goals">
+    <section className="goals section">
       <h2>Your Goals</h2>
       <ul className="goals__list">
         {goals.map((goal) => (
