@@ -9,6 +9,7 @@
   transition: width 0.5s;
   position: relative;
   animation: move-background 20s linear infinite;
+  min-width: 348px;
 }
 .card:hover {
   width: 75%;

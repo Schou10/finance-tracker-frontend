@@ -5,10 +5,29 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 75%;
   margin: 20px auto 20px 20px;
-  background-color: rgba(34, 34, 34, 0.465);
-  transition: color 0.5s linear, background-color 0.5s linear;
+  background: rgba(34, 34, 34, 0.465);
+  transition: color 0.5s linear, background 0.5s ease-in-out;
+  color: #fff;
+  position: relative;
 }
+
+.section::before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    to top left,
+    #6c6c6c 20%,
+    #bebebe 50%,
+    #6c6c6c 80%
+  );
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
 .section:hover {
-  color: black;
-  background-color: #e4e4e4;
+  color: #000;
+  background: transparent;
 }

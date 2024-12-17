@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import AppContext from "../../context/AppContext";
-import "../Modal/Modal.css";
+import "./TransactionModal.css";
 
 function TransactionModal({ isOpen, onClose }) {
   const { selectedCard: transaction } = useContext(AppContext);
@@ -8,29 +8,28 @@ function TransactionModal({ isOpen, onClose }) {
   return transaction ? (
     <div className={`modal ${isOpen == "preview" ? "modal_opened" : null}`}>
       <div className="modal__container">
-        <div className="wave"></div>
-        <div className="wave"></div>
-        <div className="wave"></div>
         <button className="modal__close" onClick={onClose}></button>
-        <h2 className="modal__title">Transaction Details</h2>
+        <div className="modal__heading">
+          <h2 className="modal__title">{transaction.name}:</h2>
+          <p className="transaction-modal__merchant">
+            {" "}
+            {transaction.merchant_name || "N/A"}
+          </p>
+        </div>
         <div className="modal__body">
-          <p>
-            <strong>Name:</strong> {transaction.name || "N/A"}
+          <p>{transaction.date || "N/A"}</p>
+          <h3>Amount:</h3>
+          <p className="transaction-modal__amount">
+            {" "}
+            ${transaction.amount || "N/A"}
           </p>
-          <p>
-            <strong>Amount:</strong> ${transaction.amount || "N/A"}
-          </p>
-          <p>
-            <strong>Date:</strong> {transaction.date || "N/A"}
-          </p>
+
           <p>
             <strong>Authorized Date:</strong>{" "}
             {transaction.authorized_date || "N/A"}
           </p>
-          <p>
-            <strong>Category:</strong>{" "}
-            {transaction.category?.join(", ") || "N/A"}
-          </p>
+          <h3>Category:</h3>
+          <p>{transaction.category?.join(", ") || "N/A"}</p>
           <p>
             <strong>Payment Channel:</strong>{" "}
             {transaction.payment_channel || "N/A"}
@@ -38,9 +37,7 @@ function TransactionModal({ isOpen, onClose }) {
           <p>
             <strong>Currency:</strong> {transaction.iso_currency_code || "N/A"}
           </p>
-          <p>
-            <strong>Merchant:</strong> {transaction.merchant_name || "N/A"}
-          </p>
+
           <p>
             <strong>Transaction Type:</strong>{" "}
             {transaction.transaction_type || "N/A"}
@@ -56,14 +53,12 @@ function TransactionModal({ isOpen, onClose }) {
               {transaction.personal_finance_category.primary}
             </p>
           )}
-          {transaction.personal_finance_category_icon_url && (
-            <img
-              src={transaction.personal_finance_category_icon_url}
-              alt="Category Icon"
-              className="modal__icon"
-            />
-          )}
         </div>
+        <img
+          src={transaction.personal_finance_category_icon_url}
+          alt="Category Icon"
+          className="modal__icon"
+        />
       </div>
     </div>
   ) : null;

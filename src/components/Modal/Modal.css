@@ -27,11 +27,7 @@
   padding: 28px;
   border-radius: 10px;
   width: 430px;
-  overflow: hidden;
   background-color: #fff;
-}
-
-.modal__container:hover {
 }
 
 .modal__close {
@@ -47,4 +43,14 @@
   top: 20px;
   right: 28px;
   transition: opacity 0.25s;
+}
+
+.modal__heading {
+  display: flex;
+  align-items: baseline;
+}
+
+.modal__title {
+  font-size: 1.5rem;
+  margin: 0 25px 0 0;
 }

@@ -138,7 +138,6 @@ function App() {
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
-    console.log("Card Clicked", card);
   };
 
   const fetchAccounts = async () => {

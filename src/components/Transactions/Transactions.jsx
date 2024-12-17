@@ -6,7 +6,6 @@ import "./Transactions.css";
 function Transactions() {
   // Check if Transaction is Array to be able to be used for Card maping
   const { transactions } = useContext(AppContext);
-  console.log(transactions);
   const transactionArray = Object.values(transactions);
   const flattenedTransactions =
     !Array.isArray(transactions) && transactionArray.length === 1
