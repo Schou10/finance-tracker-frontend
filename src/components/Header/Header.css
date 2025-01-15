@@ -43,7 +43,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: #0e4d0d 3px solid;
+  border: rgb(0, 95, 163) 3px solid;
 }
 
 .header__avatar_none {
@@ -62,8 +62,8 @@
   font-size: 1em;
   line-height: 1.5;
   padding: 10px 20px;
-  background-color: #0077cc; /* Brand color for CTA */
-  color: #fff; /* Contrasting text color */
+  background-color: #0077cc;
+  color: #fff;
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;

@@ -23,13 +23,15 @@
   width: 200px;
   text-align: center;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(135deg, #bebebe 20%, #6c6c6c 50%, #bebebe 80%);
-  color: #fff;
-  transition: background 1s linear;
+  background: rgb(240, 240, 240);
+  border: rgb(100, 150, 250);
+  color: rgb(50, 50, 50);
+  transition: background 1s linear, color 1s linear;
 }
 
 .accounts:hover .account__card {
-  background: #66a1b5;
+  background: rgb(50, 50, 50);
+  color: rgb(240, 240, 240);
 }
 
 .account__header {

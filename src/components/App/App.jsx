@@ -17,7 +17,6 @@ import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 import "./App.css";
 import GoalModal from "../GoalModal/GoalModal.jsx";
-import Loader from "../Loader/Loader.jsx";
 import TransactionModal from "../TransactionModal/TransactionModal.jsx";
 
 axios.defaults.baseURL = baseUrl;
@@ -39,8 +38,6 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [accounts, setAccounts] = useState([]);
-  const [transactions, setTransactions] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setUser] = useState({
     _id: "",
@@ -140,24 +137,6 @@ function App() {
     setSelectedCard(card);
   };
 
-  const fetchAccounts = async () => {
-    try {
-      const res = await axios.get("/accounts");
-      setAccounts(res.data);
-    } catch (err) {
-      console.error("Error fetching accounts:", err);
-    }
-  };
-
-  const fetchTransactions = async () => {
-    try {
-      const res = await axios.get("/transactions");
-      setTransactions(res.data);
-    } catch (err) {
-      console.error("Error fetching transactions:", err);
-    }
-  };
-
   // Use Effects
   // Get User Info from Token for auto login
   useEffect(() => {
@@ -172,8 +151,6 @@ function App() {
         // data to state, and navigate them to /ducks.
         setIsLoggedIn(true);
         setUser(user);
-        fetchAccounts();
-        fetchTransactions();
         navigate("/profile");
       })
       .catch(console.error);
@@ -210,10 +187,6 @@ function App() {
           setIsLoading,
           setUser,
           setActiveModal,
-          accounts,
-          setAccounts,
-          transactions,
-          setTransactions,
           handleCardClick,
           selectedCard,
         }}
@@ -274,7 +247,6 @@ function App() {
               onClose={closeActiveModal}
             />
             <TransactionModal isOpen={activeModal} onClose={closeActiveModal} />
-            {isLoading ? <Loader /> : null}
           </div>
         </div>
       </AppConetext.Provider>
