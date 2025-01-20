@@ -13,7 +13,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  border: #0e4d0d 3px solid;
+  border: rgb(0, 95, 163) 3px solid;
 }
 
 .sidebar__avatar_none {

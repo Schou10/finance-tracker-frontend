@@ -119,12 +119,13 @@ function App() {
       .catch(() => console.error)
       .finally(() => setIsLoading(false));
   };
-
+  // handle Goal
   const handleGoal = (data) => {
     setIsLoading(true);
     api
-      .updateGoals(data)
-      .then((updatedGoals) => {
+      .createGoal(data)
+      .then(() => {
+        const updatedGoals = api.fetchGoals();
         setUserGoals(updatedGoals);
         closeActiveModal();
       })

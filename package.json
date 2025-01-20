@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite --open",
+    "clean": "rimraf dist",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warning 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "npm run predeploy && scp -v -r ./dist/* aschou101229@34.70.250.245:/home/aschou101229/frontend/ && ssh aschou101229@34.70.250.245 'chmod -R a+x /home/aschou101229/frontend"
+    "deploy": "npm run predeploy && scp -v -r ./dist/* aschou101229@34.70.250.245:/home/aschou101229/frontend/"
 
   },
   "dependencies": {

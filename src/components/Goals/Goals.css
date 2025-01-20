@@ -1,5 +1,12 @@
 @import url("../Sections/Sections.css");
-.goals {
+.goals-section {
+  padding: 20px;
+}
+
+.goals__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .goals h2 {
@@ -7,18 +14,27 @@
   margin: 0 0 1rem;
 }
 
-.goal__item {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #eaeaea;
+.goal__card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  width: 200px;
 }
 
 .goal__name {
   font-size: 1rem;
 }
 
-.goal__progress {
-  font-size: 0.9rem;
-  color: #555;
+.progress-bar {
+  background: #eaeaea;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 10px;
+  margin: 10px 0;
+}
+
+.progress-bar-fill {
+  background: #4caf50;
+  height: 100%;
 }

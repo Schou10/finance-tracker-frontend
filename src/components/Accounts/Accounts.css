@@ -24,14 +24,13 @@
   text-align: center;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
   background: rgb(240, 240, 240);
-  border: rgb(100, 150, 250);
+  border: rgb(100, 150, 250) solid 6px;
   color: rgb(50, 50, 50);
-  transition: background 1s linear, color 1s linear;
+  transition: border 1s linear;
 }
 
 .accounts:hover .account__card {
-  background: rgb(50, 50, 50);
-  color: rgb(240, 240, 240);
+  border: rgb(56, 85, 142) solid 6px;
 }
 
 .account__header {

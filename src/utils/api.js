@@ -16,7 +16,6 @@ function request(url, options){
 
 function updateUser({name, avatar}){
   const token = localStorage.getItem("jwt");
-  
   return request(`${baseUrl}/users/me`,{
     method: "PATCH",
     headers: { ...headers, Authorization: `Bearer ${token}`},
@@ -24,37 +23,49 @@ function updateUser({name, avatar}){
 } )
 } 
 
-function addTransaction(data){
+// Goals
+function createGoal(data){
   const token = localStorage.getItem("jwt");
-  // Have to find api or set up api that stores all the tranaction to POST the new Transactions
-  return request(`${baseUrl}/transactions/user`, {
-    method: "POST",
-    headers: {...headers, Authorization: `Bearer ${token}`},
+  return request(`${baseUrl}/goals`, {
+    method:"POST",
+    header: {...headers, Authorization: `Bearer ${token}`},
     body: JSON.stringify({
-      date: data.date,
-      amount: data.amount,
-      type: data.type,
-      category: data.category,
-      description: data.description,
-      payment_method: data.payment_method,
-      currency: data.currency,
-      account: data.account
+      goalData: data,
     })
-  });
+  })
 }
 
-function updateGoals(data){
+function fetchGoals(){
   const token = localStorage.getItem("jwt");
-  return request(`${baseUrl}/goals/user`, {
-    method: "POST",
+  return request(`${baseUrl}/goals`, {
+    method:"GET",
+    header: {...headers, Authorization: `Bearer ${token}`},
+  
+  })
+}
+
+function updateGoal(goalId, data){
+  const token = localStorage.getItem("jwt");
+  return request(`${baseUrl}/goals/${goalId}`, {
+    method: "PATCH",
     headers: {...headers, Authorization: `Bearer ${token}`},
     body: JSON.stringify({
       name: data.name,
       description: data.description,
       date: data.date,
+      amount:data.amount
     })
   });
 }
 
+function deleteGoal(goalId){
+  const token = localStorage.getItem("jwt");
+  return request(`${baseUrl}/goals/${goalId}`, {
+    method: "DELETE",
+    headers: {...headers, Authorization: `Bearer ${token}`},
+  })
+}
 
-export { updateUser, addTransaction, updateGoals};
+
+
+export { updateUser, addTransaction, createGoal, fetchGoals, updateGoal, deleteGoal};

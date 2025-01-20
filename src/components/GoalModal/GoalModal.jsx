@@ -7,6 +7,7 @@ function GoalModal({ handleGoal, isOpen, onClose }) {
     name: "",
     description: "",
     end_date: "",
+    amount: "",
   });
   const [disable, setDisable] = useState(true);
   const { isLoading } = useContext(AppContext);
@@ -81,6 +82,20 @@ function GoalModal({ handleGoal, isOpen, onClose }) {
           onChange={handleChange}
         />
         <span className={""} id="goal-date-input-error"></span>
+      </label>
+      <label htmlFor="goal_amount" className="modal__label">
+        <legend className="modal_legend">Amount*</legend>
+        <input
+          type="number"
+          className="modal__input"
+          id="goal_amount"
+          name="amount"
+          required
+          value={data.amount}
+          onChange={handleChange}
+          min={0.01}
+        />
+        <span className={""} id="goal-amount-input-error"></span>
       </label>
     </ModalWithForm>
   );
