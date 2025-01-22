@@ -25,10 +25,11 @@ function updateUser({name, avatar}){
 
 // Goals
 function createGoal(data){
+  console.log(data)
   const token = localStorage.getItem("jwt");
   return request(`${baseUrl}/goals`, {
     method:"POST",
-    header: {...headers, Authorization: `Bearer ${token}`},
+    headers: {...headers, Authorization: `Bearer ${token}`},
     body: JSON.stringify({
       goalData: data,
     })
@@ -39,7 +40,7 @@ function fetchGoals(){
   const token = localStorage.getItem("jwt");
   return request(`${baseUrl}/goals`, {
     method:"GET",
-    header: {...headers, Authorization: `Bearer ${token}`},
+    headers: {...headers, Authorization: `Bearer ${token}`},
   
   })
 }
@@ -68,4 +69,4 @@ function deleteGoal(goalId){
 
 
 
-export { updateUser, addTransaction, createGoal, fetchGoals, updateGoal, deleteGoal};
+export { updateUser, createGoal, fetchGoals, updateGoal, deleteGoal};

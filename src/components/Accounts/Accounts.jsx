@@ -1,24 +1,24 @@
-import { useState, useEffect } from "react";
-import { fetchAccountData } from "../../utils/plaidApi";
+import { useState, useEffect, useContext } from "react";
+import { fetchAccountData, syncAccounts } from "../../utils/plaidApi";
+import CurrentUserContext from "../../context/CurrentUserContext";
 import AccountCard from "../AccountCard/AccountCard";
 import Loader from "../Loader/Loader";
 import "./Accounts.css";
 
 function Accounts() {
   const [accounts, setAccounts] = useState([]);
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function fetchData() {
       try {
-        const accounts = await fetchAccountData();
-        setAccounts(accounts);
+        const currentAccounts = await syncAccounts();
+        setAccounts(currentAccounts.accounts);
       } catch (error) {
-        console.error("Error fetching transaction data:", error);
+        console.error("Error fetching account data:", error);
       } finally {
         setLoading(false);
       }
     }
-
     fetchData();
   }, []);
 
@@ -28,7 +28,7 @@ function Accounts() {
     <section className="accounts section">
       <h2 className="accounts__title">User Accounts</h2>
       <ul className="accounts__list">
-        {accounts.map((account) => (
+        {accounts?.map((account) => (
           <AccountCard key={account.name} account={account} />
         ))}
       </ul>

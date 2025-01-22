@@ -4,7 +4,6 @@ import "./TransactionModal.css";
 
 function TransactionModal({ isOpen, onClose }) {
   const { selectedCard: transaction } = useContext(AppContext);
-  console.log(transaction);
   if (!isOpen == "preview" || !transaction) return null;
   return transaction ? (
     <div className={`modal ${isOpen == "preview" ? "modal_opened" : null}`}>

@@ -10,9 +10,10 @@ import ProtectedRoute from "../ProtectedRoutes/ProtectedRoutes.jsx";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import EditUserProfile from "../EditProfileModal/EditProfileModal";
+import EditGoalModal from "../EditGoalModal/EditGoalModal.jsx";
 import { baseUrl } from "../../utils/constants.js";
 import CurrentUserContext from "../../context/CurrentUserContext.js";
-import AppConetext from "../../context/AppContext";
+import AppContext from "../../context/AppContext";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 import "./App.css";
@@ -39,19 +40,21 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
+  const [selectedGoal, setSelectedGoal] = useState({});
   const [currentUser, setUser] = useState({
     _id: "",
     name: "",
     avatar: "",
     email: "",
   });
-  const [userGoals, setUserGoals] = useState([]);
+  const [goals, setGoals] = useState([]);
 
   const navigate = useNavigate();
 
   const closeActiveModal = () => {
     setActiveModal("");
     setSelectedCard({});
+    setSelectedGoal({});
   }; // Close modals
   const handleGoalClick = () => setActiveModal("goal"); // Goal modal
   const handleChangeProfileClick = () => setActiveModal("edit-profile"); // Profile Change Data Modal
@@ -124,9 +127,8 @@ function App() {
     setIsLoading(true);
     api
       .createGoal(data)
-      .then(() => {
-        const updatedGoals = api.fetchGoals();
-        setUserGoals(updatedGoals);
+      .then((newGoalData) => {
+        setGoals([...goals, newGoalData]);
         closeActiveModal();
       })
       .catch(() => console.error)
@@ -136,6 +138,10 @@ function App() {
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
+  };
+  const handleEditGoalClick = (goal) => {
+    setActiveModal("edit-goal");
+    setSelectedGoal(goal);
   };
 
   // Use Effects
@@ -180,16 +186,20 @@ function App() {
         setPublicToken,
       }}
     >
-      <AppConetext.Provider
+      <AppContext.Provider
         value={{
           isLoggedIn,
           setIsLoggedIn,
           isLoading,
-          setIsLoading,
           setUser,
           setActiveModal,
           handleCardClick,
           selectedCard,
+          goals,
+          setGoals,
+          selectedGoal,
+          setSelectedGoal,
+          handleEditGoalClick,
         }}
       >
         <div className="app">
@@ -247,10 +257,11 @@ function App() {
               isOpen={activeModal}
               onClose={closeActiveModal}
             />
+            <EditGoalModal isOpen={activeModal} onClose={closeActiveModal} />
             <TransactionModal isOpen={activeModal} onClose={closeActiveModal} />
           </div>
         </div>
-      </AppConetext.Provider>
+      </AppContext.Provider>
     </CurrentUserContext.Provider>
   );
 }

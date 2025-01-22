@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 import Transactions from "../Transactions/Transactions";
 import BudgetOverview from "../BudgetOverview/BudgetOverview";
-import Charts from "../Charts/Charts";
+import Goals from "../Goals/Goals";
 
 const DashboardOverview = () => {
   let { currentUser: user } = useContext(CurrentUserContext) || {};
@@ -12,7 +12,7 @@ const DashboardOverview = () => {
       <h1 className="dashboard-overview__title">Welcome back, {user.name}</h1>
       <BudgetOverview />
       <Transactions />
-      <Charts />
+      <Goals />
     </section>
   );
 };

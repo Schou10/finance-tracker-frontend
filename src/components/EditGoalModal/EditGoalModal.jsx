@@ -1,16 +1,18 @@
 import { useState, useEffect, useContext } from "react";
 import AppContext from "../../context/AppContext.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-function GoalModal({ handleGoal, isOpen, onClose }) {
+import { updateGoal } from "../../utils/api.js";
+function EditGoalModal({ isOpen, onClose }) {
   // Goal Data
+  const { selectedGoal: goal, isLoading } = useContext(AppContext);
   const [data, setData] = useState({
-    name: "",
-    description: "",
-    end_date: "",
-    amount: "",
+    name: `${goal.name}`,
+    description: `${goal.description}`,
+    end_date: `${goal.end_date}`,
+    amount: `${goal.amount}`,
   });
   const [disable, setDisable] = useState(true);
-  const { isLoading } = useContext(AppContext);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({
@@ -21,7 +23,7 @@ function GoalModal({ handleGoal, isOpen, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleGoal(data);
+    updateGoal({ goalId: goalData.itemId }, data);
   };
 
   useEffect(() => {
@@ -33,9 +35,9 @@ function GoalModal({ handleGoal, isOpen, onClose }) {
 
   return (
     <ModalWithForm
-      isOpen={isOpen == "goal"}
-      title="New Goal"
-      buttonText={isLoading ? "Adding Goal..." : "Submit"}
+      isOpen={isOpen == "edit-goal"}
+      title="Edit Goal"
+      buttonText={isLoading ? "Updating Goal..." : "Submit"}
       onClose={onClose}
       onSubmit={handleSubmit}
       disable={disable}
@@ -46,7 +48,7 @@ function GoalModal({ handleGoal, isOpen, onClose }) {
         <input
           type="text"
           className="modal__input"
-          id="goal_name"
+          id="edit-goal_name"
           name="name"
           placeholder="Goal"
           required
@@ -55,11 +57,11 @@ function GoalModal({ handleGoal, isOpen, onClose }) {
         />
         <span className={""} id="goal-name-input-error"></span>
       </label>
-      <label htmlFor="goal_description" className="modal__label">
+      <label htmlFor="edit-goal_description" className="modal__label">
         <legend className="modal_legend">Goal Description*</legend>
         <textarea
           className="modal__input"
-          id="goal_description"
+          id="edit-goal_description"
           name="description"
           placeholder="Goal Description"
           required
@@ -70,12 +72,12 @@ function GoalModal({ handleGoal, isOpen, onClose }) {
         />
         <span className={""} id="goal-descryption-input-error"></span>
       </label>
-      <label htmlFor="goal_end_date" className="modal__label">
+      <label htmlFor="edit-goal_end_date" className="modal__label">
         <legend className="modal_legend">Date*</legend>
         <input
           type="date"
           className="modal__input"
-          id="goal_end_date"
+          id="edit-end_date"
           name="end_date"
           required
           value={data.end_date}
@@ -83,12 +85,12 @@ function GoalModal({ handleGoal, isOpen, onClose }) {
         />
         <span className={""} id="goal-date-input-error"></span>
       </label>
-      <label htmlFor="goal_amount" className="modal__label">
+      <label htmlFor="edit-goal_amount" className="modal__label">
         <legend className="modal_legend">Amount*</legend>
         <input
           type="number"
           className="modal__input"
-          id="goal_amount"
+          id="edit-goal_amount"
           name="amount"
           required
           value={data.amount}
@@ -101,4 +103,4 @@ function GoalModal({ handleGoal, isOpen, onClose }) {
   );
 }
 
-export default GoalModal;
+export default EditGoalModal;

@@ -2,24 +2,25 @@ import { useState, useEffect } from "react";
 import TransactionCard from "../TransactionCard/TransactionCard";
 import AppContext from "../../context/AppContext.js";
 import Loader from "../Loader/Loader.jsx";
-import { fetchTransactionData } from "../../utils/plaidApi.js";
+import {
+  fetchTransactionData,
+  syncTransactions,
+} from "../../utils/plaidApi.js";
 import "./Transactions.css";
 
 function Transactions() {
   // Check if Transaction is Array to be able to be used for Card maping
   const [loading, setLoading] = useState(true);
   const [transactions, setTransactions] = useState([]);
-  const transactionArray = Object.values(transactions);
+  // const transactionArray = Object.values(transactions);
   const flattenedTransactions =
-    !Array.isArray(transactions) && transactionArray.length === 1
-      ? transactionArray[0]
-      : transactions;
+    transactions.length > 1 ? transactions : transactions[0];
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const transactions = await fetchTransactionData();
-        setTransactions(transactions);
+        const currentTransactions = await syncTransactions();
+        setTransactions(currentTransactions);
       } catch (error) {
         console.error("Error fetching transaction data:", error);
       } finally {
@@ -36,14 +37,12 @@ function Transactions() {
     <section className="transactions section">
       <h2>Recent Transactions</h2>
       <ul className="transactions__list">
-        {transactions
-          ? flattenedTransactions.map((transaction) => (
-              <TransactionCard
-                key={transaction.transaction_id}
-                transaction={transaction}
-              />
-            ))
-          : null}
+        {flattenedTransactions?.map((transaction) => (
+          <TransactionCard
+            key={transaction.transaction_id}
+            transaction={transaction}
+          />
+        ))}
       </ul>
     </section>
   );

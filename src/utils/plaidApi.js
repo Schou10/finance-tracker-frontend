@@ -20,7 +20,7 @@ const handleError = (err) => {
 };
 
 
-
+// Gets Accounts from api
 const syncAccounts = async () => {
   try {
     const accountData = await axios.get('/accounts/sync'); // Route to get accounts from plaid api to connect to user account
@@ -29,7 +29,7 @@ const syncAccounts = async () => {
     handleError(err);
   }
 };
-
+// Gets Transactions from api
 const syncTransactions = async () =>{
   try {
     const transactionData = await axios.get('/transactions/sync'); // Route to get transactions from plaid api to connect to user account
@@ -40,8 +40,10 @@ const syncTransactions = async () =>{
 };
 
 const saveAccountData = async ({accounts, item_id}) => {
+  console.log( accounts, item_id)
   try {
-    await axios.post('/accounts', { accountData:accounts, itemId:item_id });
+    const response = await axios.post('/accounts', { accountData:accounts, itemId:item_id });
+    return await response.json()
   } catch (err) {
     console.error('Error saving account data:', err);
   }
@@ -54,7 +56,7 @@ const saveTransactionData = async (transactions) => {
     console.error('Error saving transaction data:', err);
   }
 };
-
+// Gets Accounts from Local Server
 const fetchAccountData = async () => {
   try {
     const response = await axios.get('/accounts');
@@ -63,7 +65,7 @@ const fetchAccountData = async () => {
     console.error('Error fetching account data:', err);
   }
 };
-
+//Gets Transactions from Local Server
 const fetchTransactionData = async () => {
   try {
     const response = await axios.get('/transactions');

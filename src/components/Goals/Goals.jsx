@@ -1,33 +1,36 @@
-import { useContext } from "react";
-import { GoalContext } from "../../context/GoalContext";
+import { useState, useEffect, useContext } from "react";
+import Loader from "../Loader/Loader";
+import { fetchGoals } from "../../utils/api";
+import AppContext from "../../context/AppContext";
+import GoalCard from "../GoalCard/GoalCard";
 import "./Goals.css";
 
 function Goals() {
-  const { goals } = useContext(GoalContext);
+  const { goals, setGoals } = useContext(AppContext);
+  const [isLoading, setLoading] = useState(true);
+
+  // Goals
+  useEffect(() => {
+    const refreshGoals = async () => {
+      try {
+        const fetchedGoals = await fetchGoals(); // Fetch goals from the backend
+        setGoals(fetchedGoals);
+      } catch (err) {
+        console.error("Error fetching goals:", err);
+      }
+      setLoading(false);
+    };
+    refreshGoals();
+  }, []);
+
+  if (isLoading) return <Loader />;
 
   return (
-    <section className="goals-section">
+    <section className="goals-section section">
       <h2>Your Goals</h2>
       <ul className="goals__list">
         {goals.map((goal) => (
-          <li key={goal._id} className="goal__card">
-            <h3 className="goal__name">{goal.goalData.name}</h3>
-            <p className="goal__description">{goal.goalData.description}</p>
-            <p className="progress-bar"></p>
-            <div
-              className="progress-bar-fill"
-              style={{
-                width: `${Math.min(
-                  (goal.goalData.currentAmount / goal.goalData.amount) * 100,
-                  100
-                )}%`,
-              }}
-            ></div>
-            <p>
-              {goal.goalData.currentAmount} / {goal.goalData.amount}
-            </p>
-            <p>Due: {new Date(goal.goalData.end_date).toLocaleDateString()}</p>
-          </li>
+          <GoalCard goal={goal} />
         ))}
       </ul>
     </section>
