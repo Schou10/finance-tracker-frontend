@@ -12,9 +12,9 @@ function Accounts() {
     async function fetchData() {
       try {
         const currentAccounts = await syncAccounts();
-        setAccounts(currentAccounts.accounts);
-      } catch (error) {
-        console.error("Error fetching account data:", error);
+        setAccounts(currentAccounts.data.accounts);
+      } catch (err) {
+        console.error("Error fetching account data:", err);
       } finally {
         setLoading(false);
       }

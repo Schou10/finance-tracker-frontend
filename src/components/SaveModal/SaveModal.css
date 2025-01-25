@@ -1,0 +1,40 @@
+.save-modal {
+  position: fixed;
+  bottom: 50%;
+  right: 20px;
+  width: 300px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 1;
+  z-index: 1000;
+}
+
+.save-modal.hidden {
+  transform: translateX(110%); /* Slide off-screen */
+  opacity: 0;
+}
+
+.save-modal.visible {
+  transform: translateX(0); /* Slide into view */
+  opacity: 1;
+}
+
+.save-modal__input {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0 10px 10px 0;
+}
+
+.save-modal__button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}

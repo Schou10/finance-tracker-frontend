@@ -11,14 +11,15 @@ import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import EditUserProfile from "../EditProfileModal/EditProfileModal";
 import EditGoalModal from "../EditGoalModal/EditGoalModal.jsx";
+import GoalModal from "../GoalModal/GoalModal.jsx";
+import TransactionModal from "../TransactionModal/TransactionModal.jsx";
 import { baseUrl } from "../../utils/constants.js";
+
 import CurrentUserContext from "../../context/CurrentUserContext.js";
 import AppContext from "../../context/AppContext";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 import "./App.css";
-import GoalModal from "../GoalModal/GoalModal.jsx";
-import TransactionModal from "../TransactionModal/TransactionModal.jsx";
 
 axios.defaults.baseURL = baseUrl;
 // Interceptor to automatically include the Authorization header
@@ -40,7 +41,20 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
-  const [selectedGoal, setSelectedGoal] = useState({});
+  const noGoalSelection = {
+    createdAt: "",
+    goalData: {
+      name: "",
+      description: "",
+      end_date: "",
+      amount: 0,
+      currentAmount: 0,
+    },
+    itemId: "",
+    userId: "",
+  };
+  const [selectedGoal, setSelectedGoal] = useState(noGoalSelection);
+
   const [currentUser, setUser] = useState({
     _id: "",
     name: "",
@@ -48,13 +62,14 @@ function App() {
     email: "",
   });
   const [goals, setGoals] = useState([]);
+  const [balances, setBalances] = useState([]);
 
   const navigate = useNavigate();
 
   const closeActiveModal = () => {
     setActiveModal("");
     setSelectedCard({});
-    setSelectedGoal({});
+    setSelectedGoal(noGoalSelection);
   }; // Close modals
   const handleGoalClick = () => setActiveModal("goal"); // Goal modal
   const handleChangeProfileClick = () => setActiveModal("edit-profile"); // Profile Change Data Modal
@@ -163,7 +178,7 @@ function App() {
       .catch(console.error);
   }, []);
 
-  // Plaid
+  // Plaid Create Link Token for user
   useEffect(() => {
     if (currentUser._id) {
       async function fetchPlaidToken() {
@@ -200,6 +215,9 @@ function App() {
           selectedGoal,
           setSelectedGoal,
           handleEditGoalClick,
+          noGoalSelection,
+          closeActiveModal,
+          activeModal,
         }}
       >
         <div className="app">
@@ -238,25 +256,18 @@ function App() {
             <LoginModal
               handleLogin={handleLogin}
               isOpen={activeModal}
-              onClose={closeActiveModal}
               switchModal={handleSwitchLogin_SignUp}
             />
             <RegisterModal
               handleRegistration={handleRegistration}
               isOpen={activeModal}
-              onClose={closeActiveModal}
               switchModal={handleSwitchLogin_SignUp}
             />
             <EditUserProfile
               isOpen={activeModal}
-              onClose={closeActiveModal}
               updateUser={handleUpdateUser}
             />
-            <GoalModal
-              handleGoal={handleGoal}
-              isOpen={activeModal}
-              onClose={closeActiveModal}
-            />
+            <GoalModal handleGoal={handleGoal} isOpen={activeModal} />
             <EditGoalModal isOpen={activeModal} onClose={closeActiveModal} />
             <TransactionModal isOpen={activeModal} onClose={closeActiveModal} />
           </div>

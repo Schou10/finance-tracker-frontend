@@ -14,19 +14,19 @@ function TransactionModal({ isOpen, onClose }) {
       >
         <button className="modal__close" onClick={onClose}></button>
         <div className="modal__heading">
-          <h2 className="transaction__name">{transaction.name}: </h2>
+          <h2 className="transaction__title">{transaction.name}: </h2>
           <p className="transaction__date">{transaction.date}</p>
         </div>
         <div className="modal__body">
-          <h3 className="transaction__amount">
+          <p className="transaction__amount">
             Amount: {transaction.amount + " " + transaction.iso_currency_code}
-          </h3>
-          <h3 className="transaction__category">
+          </p>
+          <p className="transaction__category">
             Category: {transaction.category?.join(", ") || "None"}
-          </h3>
-          <h3 className="transaction__auth-date">
+          </p>
+          <p className="transaction__auth-date">
             Authorized Date: {transaction.authorized_date}
-          </h3>
+          </p>
         </div>
         {transaction.personal_finance_category_icon_url ? (
           <img

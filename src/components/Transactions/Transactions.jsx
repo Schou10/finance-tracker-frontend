@@ -14,15 +14,15 @@ function Transactions() {
   const [transactions, setTransactions] = useState([]);
   // const transactionArray = Object.values(transactions);
   const flattenedTransactions =
-    transactions.length > 1 ? transactions : transactions[0];
+    transactions?.length > 1 ? transactions : transactions[0];
 
   useEffect(() => {
     async function fetchData() {
       try {
         const currentTransactions = await syncTransactions();
         setTransactions(currentTransactions);
-      } catch (error) {
-        console.error("Error fetching transaction data:", error);
+      } catch (err) {
+        console.error("Error fetching transaction data:", err);
       } finally {
         setLoading(false);
       }

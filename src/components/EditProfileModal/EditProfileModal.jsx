@@ -3,7 +3,7 @@ import AppContext from "../../context/AppContext.js";
 import CurrentUserContext from "../../context/CurrentUserContext.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function EditProfileModal({ isOpen, onClose, updateUser }) {
+function EditProfileModal({ isOpen, updateUser }) {
   const { currentUser: user } = useContext(CurrentUserContext) || {};
   const { isLoading } = useContext(AppContext);
 
@@ -43,7 +43,6 @@ function EditProfileModal({ isOpen, onClose, updateUser }) {
       isOpen={isOpen == "edit-profile"}
       title="Change Profile Data"
       buttonText={isLoading ? "Saving Changes..." : "Save Changes"}
-      onClose={onClose}
       onSubmit={handleSubmit}
       disable={disable}
     >

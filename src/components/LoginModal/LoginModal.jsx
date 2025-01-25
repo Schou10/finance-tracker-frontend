@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import AppContext from "../../context/AppContext";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-function LoginModal({ handleLogin, isOpen, onClose, switchModal }) {
+function LoginModal({ handleLogin, isOpen, switchModal }) {
   // User Data
   const [data, setData] = useState({
     email: "",
@@ -34,7 +34,6 @@ function LoginModal({ handleLogin, isOpen, onClose, switchModal }) {
       isOpen={isOpen == "login"}
       title="Log In"
       buttonText={isLoading ? "Logging in..." : "Login"}
-      onClose={onClose}
       onSubmit={handleSubmit}
       disable={disable}
       switchModal={switchModal}

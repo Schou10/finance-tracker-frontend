@@ -67,6 +67,16 @@ function deleteGoal(goalId){
   })
 }
 
+function saveToGoal(goalId, amount ){
+  const token = localStorage.getItem("jwt");
+  return request(`${baseUrl}/goals/${goalId}/save`, {
+    method: "PATCH",
+    headers: {...headers, Authorization: `Bearer ${token}`},
+    body: JSON.stringify({amount}),
+  });
+}
 
 
-export { updateUser, createGoal, fetchGoals, updateGoal, deleteGoal};
+
+
+export { updateUser, createGoal, fetchGoals, updateGoal, deleteGoal, saveToGoal};

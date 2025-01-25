@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import AppContext from "../../context/AppContext.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-function RegisterModal({ handleRegistration, isOpen, onClose, switchModal }) {
+function RegisterModal({ handleRegistration, isOpen, switchModal }) {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -37,7 +37,6 @@ function RegisterModal({ handleRegistration, isOpen, onClose, switchModal }) {
       isOpen={isOpen == "sign up"}
       title="Sign Up"
       buttonText={isLoading ? "Signing up..." : "Sign Up"}
-      onClose={onClose}
       onSubmit={handleSubmit}
       disable={disable}
       switchModal={switchModal}

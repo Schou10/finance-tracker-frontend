@@ -1,16 +1,5 @@
 import axios from 'axios';
 
-const getAccountBalances = async () => {
-  try {
-    const response = await axios.get('/budget/accounts', {
-      headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` },
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching account balances:', error);
-    throw error;
-  }
-};
 
 const getBudgetOverview = async () => {
   try {
@@ -24,4 +13,4 @@ const getBudgetOverview = async () => {
   }
 };
 
-export { getAccountBalances, getBudgetOverview };
+export { getBudgetOverview };

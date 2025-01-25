@@ -8,6 +8,7 @@
   flex-wrap: wrap;
   gap: 20px;
   list-style: none;
+  padding: 0;
 }
 
 .goals h2 {
@@ -23,6 +24,10 @@
   padding: 15px;
   width: 200px;
   position: relative;
+}
+
+.goal__card.selected {
+  border: rgb(100, 150, 250) solid 5px;
 }
 
 .goal__name {
@@ -65,17 +70,4 @@
 
 .goal__due-date {
   margin: 0;
-}
-
-.progress-bar {
-  background: #eaeaea;
-  border-radius: 8px;
-  overflow: hidden;
-  height: 10px;
-  margin: 10px 0;
-}
-
-.progress-bar-fill {
-  background: #4caf50;
-  height: 100%;
 }

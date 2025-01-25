@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { getAccountBalances, getBudgetOverview } from "../../utils/budgetApi";
+import { syncAccounts } from "../../utils/plaidApi";
+import { getBudgetOverview } from "../../utils/budgetApi";
 import Loader from "../Loader/Loader";
 
 function BudgetOverview() {
@@ -10,8 +11,8 @@ function BudgetOverview() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const accounts = await getAccountBalances();
-        setBalances(accounts);
+        const accounts = await syncAccounts();
+        setBalances(accounts.data.accounts);
 
         const budget = await getBudgetOverview();
         setOverview(budget);

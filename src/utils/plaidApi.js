@@ -20,12 +20,12 @@ const handleError = (err) => {
 };
 
 
-// Gets Accounts from api
+// Gets Account Balances from api
 const syncAccounts = async () => {
   try {
     const accountData = await axios.get('/accounts/sync'); // Route to get accounts from plaid api to connect to user account
-    return accountData.data;
-  } catch (error) {
+    return accountData;
+  } catch (err) {
     handleError(err);
   }
 };
@@ -34,7 +34,7 @@ const syncTransactions = async () =>{
   try {
     const transactionData = await axios.get('/transactions/sync'); // Route to get transactions from plaid api to connect to user account
     return transactionData.data;
-  } catch (error) {
+  } catch (err) {
     handleError(err);
   }
 };
@@ -76,4 +76,4 @@ const fetchTransactionData = async () => {
 };
 
 
-export { syncTransactions, syncAccounts, saveAccountData, saveTransactionData, fetchAccountData, fetchTransactionData }
+export { syncTransactions, syncAccounts, saveAccountData, saveTransactionData, fetchAccountData, fetchTransactionData}
