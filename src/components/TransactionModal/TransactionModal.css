@@ -1,13 +1,5 @@
 @import url("../Modal/Modal.css");
 
-.modal__container {
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-  justify-content: baseline;
-  padding: 20px;
-  height: 250px;
-}
 .modal__heading {
   justify-content: space-between;
 }
