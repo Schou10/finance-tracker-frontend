@@ -64,10 +64,11 @@ Find the link to my Backend [here](https://www.github.com/Schou10/finance-tracke
 To test the banking integration:
 
 1. Click "Connect Bank" Select "Plaid Test Bank" when prompted to choose a bank
-2. Use phone number: 415-555-0011 found at the bottom of the screen in sandbox mode
-3. Use verification code: 123456 found at the bottom of the screen in sandbox mode
-4. Select add new bank account or default bank option
-5. Use username: user_good
-6. Use password: pass_good
-7. If asked for a verification code: 1234
-8. If asked for a phone number: 415-555-0011 found at the bottom of the screen in sandbox mode
+2. The Plaid Pop up will apear and you have to click continue
+3. Use phone number: 415-555-0011 found at the bottom of the screen in sandbox mode
+4. Use verification code: 123456 found at the bottom of the screen in sandbox mode
+5. Select add new bank account or default bank option
+6. Use username: user_good
+7. Use password: pass_good
+8. If asked for a verification code: 1234
+9. If asked for a phone number: 415-555-0011 found at the bottom of the screen in sandbox mode
