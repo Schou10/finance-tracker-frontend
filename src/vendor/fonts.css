@@ -3,33 +3,33 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("./fonts/Mukta/Mukta-Regular.ttf") format("ttf");
+  src: url("./fonts/Mukta/Mukta-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family: "Mukta";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("./fonts/Mukta/Mukta-Medium.ttf") format("ttf");
+  src: url("./fonts/Mukta/Mukta-Medium.ttf") format("truetype");
 }
 @font-face {
   font-family: "Mukta";
   font-style: normal;
   font-weight: 800;
   font-display: swap;
-  src: url("./fonts/Mukta/Mukta-ExtraBold.ttf") format("ttf");
+  src: url("./fonts/Mukta/Mukta-ExtraBold.ttf") format("truetype");
 }
 @font-face {
   font-family: "Quantico";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("./fonts/Quantico/Quantico-Regular.ttf") format("ttf");
+  src: url("./fonts/Quantico/Quantico-Regular.ttf") format("truetype");
 }
 @font-face {
   font-family: "Quantico";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("./fonts/Quantico/Quantico-Bold.ttf") format("ttf");
+  src: url("./fonts/Quantico/Quantico-Bold.ttf") format("truetype");
 }
