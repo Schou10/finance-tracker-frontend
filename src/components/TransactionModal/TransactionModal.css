@@ -5,10 +5,16 @@
 }
 
 .transaction__title {
+  z-index: 1;
   width: 75%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+.transaction__title:hover {
+  text-overflow: clip;
+  white-space: wrap;
+  overflow: visible;
 }
 .modal__income {
   border: #4b8a3a 6px solid;

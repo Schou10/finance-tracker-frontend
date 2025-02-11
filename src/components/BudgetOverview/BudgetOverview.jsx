@@ -30,9 +30,9 @@ function BudgetOverview() {
 
   return (
     <section className="budget-overview section">
-      <h1 className="budget-overview__title">Budget Overview</h1>
+      <h2 className="budget-overview__title">Budget Overview</h2>
       <div className="budget-overiew__account-balances">
-        <h2 className="budget-overview__section-title">Account Balances</h2>
+        <h3 className="budget-overview__section-title">Account Balances</h3>
         <ul>
           {balances.map((account) => (
             <li key={account.account_id}>
@@ -42,7 +42,7 @@ function BudgetOverview() {
         </ul>
       </div>
       <div className="budget-overview__spending-summary">
-        <h2 className="budget-overview__section-title">Spending Summary</h2>
+        <h3 className="budget-overview__section-title">Spending Summary</h3>
         {overview && (
           <ul className="spending-summary__list">
             {Object.entries(overview.spendingByCategory).map(
@@ -56,7 +56,7 @@ function BudgetOverview() {
         )}
       </div>
       <div className="budget-overview__footer">
-        <h2 className="budget-overview__section-title">Net Cash Flow</h2>
+        <h3 className="budget-overview__section-title">Net Cash Flow</h3>
         <p>${overview?.netCashFlow.toFixed(2)}</p>
       </div>
     </section>

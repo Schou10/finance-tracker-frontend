@@ -9,7 +9,7 @@ const DashboardOverview = () => {
 
   return (
     <section className="dashboard-overview">
-      <h1 className="dashboard-overview__title">Welcome back, {user.name}</h1>
+      <h2 className="dashboard-overview__title">Welcome back, {user.name}</h2>
       <BudgetOverview />
       <Transactions />
       <Goals />

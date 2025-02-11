@@ -5,6 +5,7 @@ import AppContext from "../../context/AppContext.js";
 import CurrentUserContext from "../../context/CurrentUserContext.js";
 import PlaidButton from "../PlaidButton/PlaidButton";
 import "./SideBar.css";
+import "../Button/Button.css";
 
 function SideBar({ onChangeProfileClick }) {
   let { currentUser: user, linkToken } = useContext(CurrentUserContext) || {};
@@ -31,16 +32,16 @@ function SideBar({ onChangeProfileClick }) {
         )}
         <p className="sidebar__username">{user.name}</p>
       </div>
-      <p className="sidebar__button" onClick={onChangeProfileClick}>
+      <p className="sidebar__button button" onClick={onChangeProfileClick}>
         Change Profile Data
       </p>
-      <p className="sidebar__button" onClick={signOut}>
+      <p className="sidebar__button button" onClick={signOut}>
         Log Out
       </p>
       {linkToken ? (
         <PlaidButton />
       ) : (
-        <p className="sidebar__button">Loading...</p>
+        <p className="sidebar__button button">Loading...</p>
       )}
     </section>
   );

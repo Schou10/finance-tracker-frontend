@@ -26,7 +26,7 @@
   position: relative;
   padding: 28px;
   border-radius: 10px;
-  width: 430px;
+  min-width: 320px;
   background-color: #fff;
 }
 
@@ -53,4 +53,15 @@
 .modal__title {
   font-size: 1.5rem;
   margin: 0 25px 0 0;
+}
+
+@media (max-width: 425px) {
+  .modal__container {
+  }
+  .modal__heading {
+    flex-direction: column;
+  }
+  .modal__heading * {
+    margin: 0;
+  }
 }

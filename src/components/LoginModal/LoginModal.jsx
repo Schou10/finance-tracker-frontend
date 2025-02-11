@@ -9,6 +9,8 @@ function LoginModal({ handleLogin, isOpen, switchModal }) {
   });
   const [disable, setDisable] = useState(true);
   const { isLoading } = useContext(AppContext);
+  const [error, setError] = useState(null);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({
@@ -17,9 +19,14 @@ function LoginModal({ handleLogin, isOpen, switchModal }) {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleLogin(data);
+    try {
+      await handleLogin(data);
+      setError(null);
+    } catch (err) {
+      setError("Invalid email or password");
+    }
   };
 
   useEffect(() => {
@@ -31,7 +38,7 @@ function LoginModal({ handleLogin, isOpen, switchModal }) {
 
   return (
     <ModalWithForm
-      isOpen={isOpen == "login"}
+      isOpen={isOpen === "login"}
       title="Log In"
       buttonText={isLoading ? "Logging in..." : "Login"}
       onSubmit={handleSubmit}
@@ -54,7 +61,7 @@ function LoginModal({ handleLogin, isOpen, switchModal }) {
         <span className={""} id="signin-email-input-error"></span>
       </label>
       <label htmlFor="signin-password" className="modal__label">
-        <legend className="modal_legend">Password*</legend>
+        <legend className="modal__legend">Password*</legend>
         <input
           type="password"
           className="modal__input"

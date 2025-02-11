@@ -2,8 +2,9 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: "Mukta", Arial, sans-serif;
   color: #333;
 }
 

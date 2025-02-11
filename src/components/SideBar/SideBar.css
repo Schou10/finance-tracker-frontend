@@ -39,3 +39,30 @@
   line-height: 1.5;
   margin: 8px 20px 0;
 }
+
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+@media (max-width: 1024px) {
+  .sidebar-toggle {
+    display: block;
+    top: 110px;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 678px) {
+  .sidebar-toggle {
+    top: 180px;
+  }
+}

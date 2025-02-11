@@ -9,6 +9,7 @@
 
 .accounts__list {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
   padding: 0;
@@ -21,7 +22,7 @@
 .account__card {
   border-radius: 10px;
   padding: 15px;
-  width: 200px;
+  width: calc(100% / 2);
   text-align: center;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.1);
   background: rgb(240, 240, 240);
@@ -60,4 +61,10 @@
 .account__type {
   font-size: 0.9rem;
   color: #525252;
+}
+
+@media (max-width: 1080px) {
+  .account__card {
+    width: calc(100% - 48px);
+  }
 }
