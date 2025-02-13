@@ -1,11 +1,11 @@
 import { baseUrl } from "./constants";
-
+console.log(baseUrl);
 // Centralized error handling
 const handleError = (err) => {
   console.error('API Error:', err.response?.data || err.message);
 };
 
-const create_link_token = async () => {
+const create_link_token = async (clientUserId) => {
   try {
     const response = await fetch(`${baseUrl}/create_link_token`, {
       method: 'POST',
@@ -13,10 +13,10 @@ const create_link_token = async () => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('jwt')}`
       },
-      body: JSON.stringify({ clientUserId: currentUser._id })
+      body: JSON.stringify({ clientUserId })
   });
   const data = await response.json();
-  setLinkToken(data.link_token);
+  return data.link_token;
 }catch (err) {
   handleError(err);
 };
@@ -31,10 +31,9 @@ const exchange_public_token = async (public_token) => {
         'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
         'body': JSON.stringify({ public_token }), // Route to exchange public token for access token
       }})
-    .then((response) => {
       const accessToken = response.data.access_token;
+      console.log(accessToken);
       return accessToken;
-    });
   }catch (err) {
     handleError(err); 
 };
@@ -44,13 +43,15 @@ const exchange_public_token = async (public_token) => {
 // Gets Account Balances from api
 const syncAccounts = async () => {
   try {
-    const accountData = await fetch('/accounts/sync',{
+    const response = await fetch(`${baseUrl}/accounts/sync`,{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     }}); // Route to get accounts from plaid api to connect to user account
-    return accountData;
+    const accountData =  await response.json();
+    console.log("Account Data", accountData.accounts);
+    return accountData.accounts;
   } catch (err) {
     handleError(err);
   }
@@ -58,13 +59,15 @@ const syncAccounts = async () => {
 // Gets Transactions from api
 const syncTransactions = async () =>{
   try {
-    const transactionData = await fetch(`${baseUrl}/transactions/sync`,{
+    const response = await fetch(`${baseUrl}/transactions/sync`,{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     }}); // Route to get transactions from plaid api to connect to user account
-    return transactionData.data;
+    const transactionData = await response.json();
+    console.log("Transaction Data", transactionData);
+    return transactionData;
   } catch (err) {
     handleError(err);
   }

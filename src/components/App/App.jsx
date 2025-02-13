@@ -167,10 +167,10 @@ function App() {
   useEffect(() => {
     if (currentUser._id) {
       async function fetchPlaidToken() {
-        api
+        plaid
           .create_link_token(currentUser._id)
           .then((response) => {
-            setLinkToken(response.link_token);
+            setLinkToken(response);
           })
           .catch(console.error);
       }

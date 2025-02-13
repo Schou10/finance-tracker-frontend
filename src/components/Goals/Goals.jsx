@@ -11,6 +11,7 @@ function Goals() {
     useContext(AppContext);
   const [isGoalSectionVisible, setIsGoalSectionVisible] = useState(true);
   const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const goalSectionRef = useRef(null);
 
   const handleSave = (goalId, goalAmount) => {
@@ -29,7 +30,7 @@ function Goals() {
         const fetchedGoals = await fetchGoals(); // Fetch goals from the backend
         setGoals(fetchedGoals);
       } catch (err) {
-        console.error("Error fetching goals:", err);
+        setError("Error fetching goals:", err);
       }
       setLoading(false);
     };
@@ -59,25 +60,28 @@ function Goals() {
   if (isLoading) return <Loader />;
 
   return (
-    <section ref={goalSectionRef} className="goals-section section">
-      <h2 className="goals__title">Your Goals</h2>
-      <ul className="goals__list">
-        {goals.map((goal) => (
-          <GoalCard
-            key={goal._id}
-            goal={goal}
-            onSaveClick={() => openSaveModal(goal)}
+    <>
+      {error && <Notification message={error} onClose={() => setError(null)} />}
+      <section ref={goalSectionRef} className="goals-section section">
+        <h2 className="goals__title">Your Goals</h2>
+        <ul className="goals__list">
+          {goals.map((goal) => (
+            <GoalCard
+              key={goal._id}
+              goal={goal}
+              onSaveClick={() => openSaveModal(goal)}
+            />
+          ))}
+        </ul>
+        {selectedGoal ? (
+          <SaveModal
+            selectedGoal={selectedGoal}
+            handleSave={handleSave}
+            isVisible={isGoalSectionVisible}
           />
-        ))}
-      </ul>
-      {selectedGoal ? (
-        <SaveModal
-          selectedGoal={selectedGoal}
-          handleSave={handleSave}
-          isVisible={isGoalSectionVisible}
-        />
-      ) : null}
-    </section>
+        ) : null}
+      </section>
+    </>
   );
 }
 export default Goals;
