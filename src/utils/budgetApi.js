@@ -1,10 +1,11 @@
-import axios from 'axios';
-
-
 const getBudgetOverview = async () => {
   try {
-    const response = await axios.get('/budget/overview', {
-      headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` },
+    const response = await fetch('/budget/overview', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',   // Route to get budget overview from local server 
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+      },
     });
     return response.data;
   } catch (error) {

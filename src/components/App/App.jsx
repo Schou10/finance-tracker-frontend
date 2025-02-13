@@ -166,7 +166,7 @@ function App() {
   useEffect(() => {
     if (currentUser._id) {
       async function fetchPlaidToken() {
-        const response = await api.create_link_token(currentUser._id);
+        const response = api.create_link_token(currentUser._id);
         setLinkToken(response.data.link_token);
       }
       fetchPlaidToken();
