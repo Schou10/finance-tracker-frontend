@@ -16,6 +16,7 @@ import CurrentUserContext from "../../context/CurrentUserContext.js";
 import AppContext from "../../context/AppContext";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
+import * as plaid from "../../utils/plaidApi";
 import "./App.css";
 
 function App() {
@@ -166,8 +167,12 @@ function App() {
   useEffect(() => {
     if (currentUser._id) {
       async function fetchPlaidToken() {
-        const response = api.create_link_token(currentUser._id);
-        setLinkToken(response.data.link_token);
+        api
+          .create_link_token(currentUser._id)
+          .then((response) => {
+            setLinkToken(response.link_token);
+          })
+          .catch(console.error);
       }
       fetchPlaidToken();
     }
