@@ -35,7 +35,12 @@
   border: rgb(56, 85, 142) solid 6px;
 }
 
-.account__header {
+.account__info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .account__icon {
@@ -63,8 +68,14 @@
   color: #525252;
 }
 
-@media (max-width: 1080px) {
+@media screen and (max-width: 1080px) {
   .account__card {
     width: calc(100% - 48px);
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .account__card {
+    width: 100%;
   }
 }

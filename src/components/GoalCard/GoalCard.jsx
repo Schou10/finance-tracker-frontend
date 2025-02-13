@@ -9,22 +9,27 @@ function GoalCard({ goal, onSaveClick }) {
   return (
     <li
       key={goal._id}
-      className={`goal__card ${selectedGoal._id == goal._id ? "selected" : ""}`}
+      className={`goals__card ${
+        selectedGoal._id == goal._id ? "selected" : ""
+      }`}
       onClick={handleClick}
     >
-      <h3 className="goal__name">{goal.goalData.name}</h3>
-      <p className="goal__description">{goal.goalData.description}</p>
-      <p className="goal__due-date">
+      <h3 className="goals__card-name">{goal.goalData.name}</h3>
+      <p className="goals__card-description">{goal.goalData.description}</p>
+      <p className="goals__card-due-date">
         Due: {new Date(goal.goalData.end_date).toLocaleDateString()}
       </p>
       <ProgressBar
         amount={goal.goalData.amount}
         currentAmount={goal.goalData.currentAmount}
       />
-      <p className="goal__progress">
+      <p className="goals__card-progress">
         ${goal.goalData.currentAmount} / ${goal.goalData.amount}
       </p>
-      <button className="goal__edit-button" onClick={onEditClick}></button>
+      <button
+        className="goals__card-edit-button"
+        onClick={onEditClick}
+      ></button>
     </li>
   );
 }

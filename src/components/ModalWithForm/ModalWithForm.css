@@ -5,14 +5,15 @@
 
 .modal__heading {
   margin: 0 0 24px;
-  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
-  font-size: 1em;
+  font-family: "Quantico", sans-serif;
+  font-size: 2em;
   line-height: 1.25;
 }
 
 .modal__label {
+  font: "Quantico", sans-serif;
   flex-direction: column;
-  padding-bottom: 24px;
+  padding-bottom: 2.5em;
   position: relative;
 }
 
@@ -32,6 +33,8 @@
 .modal__legend {
   margin: 0;
   padding-bottom: 12px;
+  font-family: "Quantico", sans-serif;
+  font-size: 1.5rem;
 }
 
 .modal__input {
@@ -39,7 +42,7 @@
   border: none;
   border-bottom: rgba(0, 0, 0, 1) solid 1px;
   padding-bottom: 4px;
-  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  font-family: "Mukta", sans-serif;
   font-weight: 700;
   font-size: 1em;
   line-height: 1.5;
@@ -108,6 +111,7 @@
 
 .modal__button {
   margin: 0 20px 0 0;
+  background: transparent;
   padding: 0;
   border: none;
   font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;

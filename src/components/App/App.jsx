@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { setToken, getToken } from "../../utils/token.js";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -13,26 +12,11 @@ import EditUserProfile from "../EditProfileModal/EditProfileModal";
 import EditGoalModal from "../EditGoalModal/EditGoalModal.jsx";
 import GoalModal from "../GoalModal/GoalModal.jsx";
 import TransactionModal from "../TransactionModal/TransactionModal.jsx";
-import { baseUrl } from "../../utils/constants.js";
-
 import CurrentUserContext from "../../context/CurrentUserContext.js";
 import AppContext from "../../context/AppContext";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 import "./App.css";
-
-axios.defaults.baseURL = baseUrl;
-// Interceptor to automatically include the Authorization header
-axios.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (err) => Promise.reject(err)
-);
 
 function App() {
   const [linkToken, setLinkToken] = useState();
@@ -182,9 +166,7 @@ function App() {
   useEffect(() => {
     if (currentUser._id) {
       async function fetchPlaidToken() {
-        const response = await axios.post("/create_link_token", {
-          clientUserId: currentUser._id,
-        });
+        const response = await api.create_link_token(currentUser._id);
         setLinkToken(response.data.link_token);
       }
       fetchPlaidToken();

@@ -11,14 +11,16 @@ function AccountCard({ account }) {
         />
         <h3 className="account__name">{account.name}</h3>
       </div>
-      <p
-        className={`account__balance ${
-          account.balances.current < 0 ? "negative" : ""
-        }`}
-      >
-        ${account.balances.available}
-      </p>
-      <p className="account__type">{account.subtype}</p>
+      <div className="account__info">
+        <p
+          className={`account__balance ${
+            account.balances.current < 0 ? "negative" : ""
+          }`}
+        >
+          ${account.balances.available}
+        </p>
+        <p className="account__type">{account.subtype}</p>
+      </div>
     </div>
   );
 }

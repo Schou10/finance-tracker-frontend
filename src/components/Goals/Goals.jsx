@@ -60,7 +60,7 @@ function Goals() {
 
   return (
     <section ref={goalSectionRef} className="goals-section section">
-      <h2>Your Goals</h2>
+      <h2 className="goals__title">Your Goals</h2>
       <ul className="goals__list">
         {goals.map((goal) => (
           <GoalCard

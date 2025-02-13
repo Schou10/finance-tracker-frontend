@@ -1,13 +1,8 @@
 import { useEffect, useContext } from "react";
-import axios from "axios";
 import { usePlaidLink } from "react-plaid-link";
 import CurrentUserContext from "../../context/CurrentUserContext";
 import "./PlaidButton.css";
-import {
-  saveAccountData,
-  syncAccounts,
-  syncTransactions,
-} from "../../utils/plaidApi";
+import { exchange_public_token } from "../../utils/plaidApi";
 
 function PlaidButton() {
   const {
@@ -30,11 +25,7 @@ function PlaidButton() {
 
   useEffect(() => {
     if (publicToken) {
-      axios
-        .post("/exchange_public_token", { public_token: publicToken })
-        .then((response) => {
-          const accessToken = response.data.access_token;
-        });
+      exchange_public_token(publicToken);
     }
   }, [publicToken]);
 
