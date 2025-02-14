@@ -83,27 +83,21 @@ function App() {
       .then((data) => {
         if (data.token) {
           setToken(data.token);
-          auth
-            .getUser(data)
-            .then((user) => {
-              setUser(user);
-              navigate("/profile");
-              closeActiveModal();
-              setIsLoggedIn(true);
-            })
-            .catch((err) => {
-              setError(err.message || "Something went wrong");
-              throw err;
-            })
-            .finally(() => {
-              setIsLoading(false);
-            });
+          return auth.getUser(data);
         }
       })
-      .catch((err) => {
-        setError(err.message || "Incorect Username and or Password");
+      .then((user) => {
+        setUser(user);
+        navigate("/profile");
+        closeActiveModal();
+        setIsLoggedIn(true);
       })
-      .finally(() => setIsLoading(false));
+      .catch((err) => {
+        setError(err.message || "Incorrect Username and/or Password");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   // Registartion for new users
@@ -273,5 +267,4 @@ function App() {
     </CurrentUserContext.Provider>
   );
 }
-
 export default App;
