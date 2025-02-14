@@ -12,6 +12,7 @@ import EditUserProfile from "../EditProfileModal/EditProfileModal";
 import EditGoalModal from "../EditGoalModal/EditGoalModal.jsx";
 import GoalModal from "../GoalModal/GoalModal.jsx";
 import TransactionModal from "../TransactionModal/TransactionModal.jsx";
+import Notification from "../Notification/Notification.jsx";
 import CurrentUserContext from "../../context/CurrentUserContext.js";
 import AppContext from "../../context/AppContext";
 import * as auth from "../../utils/auth";
@@ -47,7 +48,7 @@ function App() {
     email: "",
   });
   const [goals, setGoals] = useState([]);
-  const [balances, setBalances] = useState([]);
+  const [error, setError] = useState([]);
 
   const navigate = useNavigate();
 
@@ -86,6 +87,10 @@ function App() {
             .getUser(data)
             .then((user) => {
               setUser(user);
+            })
+            .catch((err) => {
+              setError(err.message || "Something went wrong");
+              throw err;
             })
             .finally(() => {
               setIsLoading(false);
@@ -154,13 +159,11 @@ function App() {
     auth
       .getUser({ token: jwt })
       .then((user) => {
-        // If the response is successful, log the user in, save their
-        // data to state, and navigate them to /ducks.
         setIsLoggedIn(true);
         setUser(user);
         navigate("/profile");
       })
-      .catch(console.error);
+      .catch((err) => setError(err.name));
   }, []);
 
   // Plaid Create Link Token for user
@@ -172,7 +175,7 @@ function App() {
           .then((response) => {
             setLinkToken(response);
           })
-          .catch(console.error);
+          .catch((err) => setError(err.message));
       }
       fetchPlaidToken();
     }
@@ -205,10 +208,14 @@ function App() {
           noGoalSelection,
           closeActiveModal,
           activeModal,
+          setError,
         }}
       >
         <div className="app">
           <div className="app__content">
+            {error && (
+              <Notification message={error} onClose={() => setError(null)} />
+            )}
             <Header
               activeModal={activeModal}
               newGoalClick={handleGoalClick}

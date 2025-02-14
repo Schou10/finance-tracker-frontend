@@ -1,4 +1,5 @@
 import { baseUrl } from "./constants";
+import {request } from "./api";
 console.log(baseUrl);
 // Centralized error handling
 const handleError = (err) => {
@@ -7,7 +8,7 @@ const handleError = (err) => {
 
 const create_link_token = async (clientUserId) => {
   try {
-    const response = await fetch(`${baseUrl}/create_link_token`, {
+    const response = await request(`${baseUrl}/create_link_token`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -15,7 +16,7 @@ const create_link_token = async (clientUserId) => {
       },
       body: JSON.stringify({ clientUserId })
   });
-  const data = await response.json();
+  const data = await response;
   return data.link_token;
 }catch (err) {
   handleError(err);
@@ -92,7 +93,7 @@ const saveAccountData = async ({accounts, item_id}) => {
 
 const saveTransactionData = async (transactions) => {
   try {
-    await fetch(`${baseUrl}/transactions`, { 
+    await request(`${baseUrl}/transactions`, { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json', 
@@ -106,7 +107,7 @@ const saveTransactionData = async (transactions) => {
 // Gets Accounts from Local Server
 const fetchAccountData = async () => {
   try {
-    const response = await fetch('/accounts', {
+    const response = await request(`${baseUrl}/accounts`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json', 
@@ -120,7 +121,7 @@ const fetchAccountData = async () => {
 //Gets Transactions from Local Server
 const fetchTransactionData = async () => {
   try {
-    const response = await fetch('/transactions', {
+    const response = await request(`${baseUrl}/transactions`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

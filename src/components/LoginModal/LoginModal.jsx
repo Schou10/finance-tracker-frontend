@@ -10,8 +10,7 @@ function LoginModal({ handleLogin, isOpen, switchModal }) {
     password: "",
   });
   const [disable, setDisable] = useState(true);
-  const { isLoading } = useContext(AppContext);
-  const [error, setError] = useState(null);
+  const { isLoading, setError } = useContext(AppContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,10 +23,12 @@ function LoginModal({ handleLogin, isOpen, switchModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("Logging in...");
       await handleLogin(data);
       setError(null);
     } catch (err) {
       setError("Invalid email or password");
+      console.log(err);
     }
   };
 
@@ -39,49 +40,46 @@ function LoginModal({ handleLogin, isOpen, switchModal }) {
   }, [data]);
 
   return (
-    <>
-      {error && <Notification message={error} onClose={() => setError(null)} />}
-      <ModalWithForm
-        isOpen={isOpen === "login"}
-        title="Log In"
-        buttonText={isLoading ? "Logging in..." : "Login"}
-        onSubmit={handleSubmit}
-        disable={disable}
-        switchModal={switchModal}
-        switchText={"Sign Up"}
-      >
-        <label htmlFor="signin-email" className="modal__label">
-          <legend className="modal__legend">Email*</legend>
-          <input
-            type="email"
-            className="modal__input"
-            id="signin-email"
-            name="email"
-            placeholder="Email"
-            required
-            value={data.email}
-            onChange={handleChange}
-          />
-          <span className={""} id="signin-email-input-error"></span>
-        </label>
-        <label htmlFor="signin-password" className="modal__label">
-          <legend className="modal__legend">Password*</legend>
-          <input
-            type="password"
-            className="modal__input"
-            id="signin-password"
-            name="password"
-            placeholder="Password"
-            required
-            value={data.password}
-            onChange={handleChange}
-            minLength={2}
-            maxLength={40}
-          />
-          <span className={""} id="signin-password-input-error"></span>
-        </label>
-      </ModalWithForm>
-    </>
+    <ModalWithForm
+      isOpen={isOpen === "login"}
+      title="Log In"
+      buttonText={isLoading ? "Logging in..." : "Login"}
+      onSubmit={handleSubmit}
+      disable={disable}
+      switchModal={switchModal}
+      switchText={"Sign Up"}
+    >
+      <label htmlFor="signin-email" className="modal__label">
+        <legend className="modal__legend">Email*</legend>
+        <input
+          type="email"
+          className="modal__input"
+          id="signin-email"
+          name="email"
+          placeholder="Email"
+          required
+          value={data.email}
+          onChange={handleChange}
+        />
+        <span className={""} id="signin-email-input-error"></span>
+      </label>
+      <label htmlFor="signin-password" className="modal__label">
+        <legend className="modal__legend">Password*</legend>
+        <input
+          type="password"
+          className="modal__input"
+          id="signin-password"
+          name="password"
+          placeholder="Password"
+          required
+          value={data.password}
+          onChange={handleChange}
+          minLength={2}
+          maxLength={40}
+        />
+        <span className={""} id="signin-password-input-error"></span>
+      </label>
+    </ModalWithForm>
   );
 }
 

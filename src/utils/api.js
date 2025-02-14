@@ -3,14 +3,14 @@ console.log(baseUrl);
 export const headers = {Accept: "application/json",
   "Content-Type": "application/json",}
 
-export function checkResponse(res){
+function checkResponse(res){
   if(res.ok){
     return res.json();
   } 
   return Promise.reject(`Error: ${res.status}`);  
 }
 
-function request(url, options){
+export function request(url, options){
   return fetch(url, options).then(checkResponse);
 }
 
