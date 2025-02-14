@@ -7,11 +7,16 @@ import SaveModal from "../SaveModal/SaveModal";
 import "./Goals.css";
 
 function Goals() {
-  const { goals, setGoals, selectedGoal, setSelectedGoal, closeActiveModal } =
-    useContext(AppContext);
+  const {
+    goals,
+    setGoals,
+    selectedGoal,
+    setSelectedGoal,
+    closeActiveModal,
+    setError,
+  } = useContext(AppContext);
   const [isGoalSectionVisible, setIsGoalSectionVisible] = useState(true);
   const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const goalSectionRef = useRef(null);
 
   const handleSave = (goalId, goalAmount) => {
@@ -60,28 +65,25 @@ function Goals() {
   if (isLoading) return <Loader />;
 
   return (
-    <>
-      {error && <Notification message={error} onClose={() => setError(null)} />}
-      <section ref={goalSectionRef} className="goals-section section">
-        <h2 className="goals__title">Your Goals</h2>
-        <ul className="goals__list">
-          {goals.map((goal) => (
-            <GoalCard
-              key={goal._id}
-              goal={goal}
-              onSaveClick={() => openSaveModal(goal)}
-            />
-          ))}
-        </ul>
-        {selectedGoal ? (
-          <SaveModal
-            selectedGoal={selectedGoal}
-            handleSave={handleSave}
-            isVisible={isGoalSectionVisible}
+    <section ref={goalSectionRef} className="goals-section section">
+      <h2 className="goals__title">Your Goals</h2>
+      <ul className="goals__list">
+        {goals.map((goal) => (
+          <GoalCard
+            key={goal._id}
+            goal={goal}
+            onSaveClick={() => openSaveModal(goal)}
           />
-        ) : null}
-      </section>
-    </>
+        ))}
+      </ul>
+      {selectedGoal ? (
+        <SaveModal
+          selectedGoal={selectedGoal}
+          handleSave={handleSave}
+          isVisible={isGoalSectionVisible}
+        />
+      ) : null}
+    </section>
   );
 }
 export default Goals;

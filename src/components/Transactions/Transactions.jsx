@@ -1,16 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import TransactionCard from "../TransactionCard/TransactionCard";
 import Loader from "../Loader/Loader.jsx";
 import { syncTransactions } from "../../utils/plaidApi.js";
 import Notification from "../Notification/Notification";
 import "./Transactions.css";
+import AppContext from "../../context/AppContext.js";
 
 function Transactions() {
   // Check if Transaction is Array to be able to be used for Card maping
+  const { setError } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
   const [transactions, setTransactions] = useState([]);
-  const [error, setError] = useState(null);
-  console.log("Transactions", transactions);
 
   // const transactionArray = Object.values(transactions);
   const flattenedTransactions =

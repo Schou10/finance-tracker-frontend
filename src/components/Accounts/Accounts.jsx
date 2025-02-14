@@ -3,19 +3,20 @@ import { syncAccounts } from "../../utils/plaidApi";
 import AccountCard from "../AccountCard/AccountCard";
 import Loader from "../Loader/Loader";
 import Notification from "../Notification/Notification";
+import AppContext from "../../context/AppContext";
 import "./Accounts.css";
 
 function Accounts() {
+  const { setError } = useContext(AppContext);
   const [accounts, setAccounts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   useEffect(() => {
     async function fetchData() {
       try {
         const currentAccounts = await syncAccounts();
         setAccounts(currentAccounts);
       } catch (err) {
-        setError("Error fetching account data:", err);
+        setError(err.message || "Error fetching account data");
       } finally {
         setLoading(false);
       }
@@ -26,17 +27,14 @@ function Accounts() {
   if (loading) return <Loader />;
 
   return (
-    <>
-      {error && <Notification message={error} onClose={() => setError(null)} />}
-      <section className="accounts section">
-        <h2 className="accounts__title">User Accounts</h2>
-        <ul className="accounts__list">
-          {accounts?.map((account) => (
-            <AccountCard key={account.name} account={account} />
-          ))}
-        </ul>
-      </section>
-    </>
+    <section className="accounts section">
+      <h2 className="accounts__title">User Accounts</h2>
+      <ul className="accounts__list">
+        {accounts?.map((account) => (
+          <AccountCard key={account.name} account={account} />
+        ))}
+      </ul>
+    </section>
   );
 }
 
