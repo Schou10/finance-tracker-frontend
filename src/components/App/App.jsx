@@ -75,7 +75,7 @@ function App() {
   // Handle Login for signed up users
   const handleLogin = ({ email, password }) => {
     if (!email || !password) {
-      return;
+      return setErorr("Email and Password are required");
     }
     setIsLoading(true);
     auth
@@ -87,6 +87,9 @@ function App() {
             .getUser(data)
             .then((user) => {
               setUser(user);
+              navigate("/profile");
+              closeActiveModal();
+              setIsLoggedIn(true);
             })
             .catch((err) => {
               setError(err.message || "Something went wrong");
@@ -94,13 +97,13 @@ function App() {
             })
             .finally(() => {
               setIsLoading(false);
-              setIsLoggedIn(true);
-              navigate("/profile");
-              closeActiveModal();
             });
         }
       })
-      .catch(console.error);
+      .catch((err) => {
+        setError(err.message || "Incorect Username and or Password");
+      })
+      .finally(() => setIsLoading(false));
   };
 
   // Registartion for new users
