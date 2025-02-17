@@ -107,7 +107,9 @@ function App() {
       auth
         .register({ email, password, name, avatar })
         .then(() => setActiveModal("sign in")) // Sends users to the login modal to login to their new account
-        .catch(console.error)
+        .catch(() =>
+          setError(err.message || "Registration Failed Email is already taken")
+        )
         .finally(() => setIsLoading(false));
     }
   };
@@ -121,7 +123,7 @@ function App() {
         setUserData(updatedUser);
         closeActiveModal();
       })
-      .catch(() => console.error)
+      .catch((err) => setError(err.message || "Failed to update User"))
       .finally(() => setIsLoading(false));
   };
   // handle Goal
@@ -133,7 +135,7 @@ function App() {
         setGoals([...goals, newGoalData]);
         closeActiveModal();
       })
-      .catch(() => console.error)
+      .catch((err) => setError(err.message || "Failed to create new goal"))
       .finally(() => setIsLoading(false));
   };
 
@@ -145,6 +147,18 @@ function App() {
     setActiveModal("edit-goal");
     setSelectedGoal(goal);
   };
+
+  function addComma(number) {
+    const numString = number.toString();
+    const parts = numString.split(".");
+    let integerPart = parts[0];
+    const decimalPart = parts.length > 1 ? "." + parts[1] : "";
+
+    if (integerPart.length > 3) {
+      integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    return integerPart + decimalPart;
+  }
 
   // Use Effects
   // Get User Info from Token for auto login
@@ -160,7 +174,7 @@ function App() {
         setUser(user);
         navigate("/profile");
       })
-      .catch((err) => setError(err.name));
+      .catch((err) => setError(err.message));
   }, []);
 
   // Plaid Create Link Token for user
@@ -206,6 +220,7 @@ function App() {
           closeActiveModal,
           activeModal,
           setError,
+          addComma,
         }}
       >
         <div className="app">

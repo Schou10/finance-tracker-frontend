@@ -57,7 +57,9 @@
 
 @media (max-width: 425px) {
   .modal__container {
+    width: 100%;
   }
+
   .modal__heading {
     flex-direction: column;
   }

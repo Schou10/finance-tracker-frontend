@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { getAccountIcon } from "../../utils/getIcons";
+import AppContext from "../../context/AppContext";
 
 function AccountCard({ account }) {
+  const { addComma } = useContext(AppContext);
   return (
     <div className="account__card">
       <div className="account__header">
@@ -17,7 +20,7 @@ function AccountCard({ account }) {
             account.balances.current < 0 ? "negative" : ""
           }`}
         >
-          ${account.balances.available}
+          ${addComma(account.balances.available)}
         </p>
         <p className="account__type">{account.subtype}</p>
       </div>

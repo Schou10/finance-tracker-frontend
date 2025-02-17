@@ -2,6 +2,7 @@ import { useState, useEffect, useContext, useRef } from "react";
 import Loader from "../Loader/Loader";
 import { fetchGoals, saveToGoal } from "../../utils/api";
 import AppContext from "../../context/AppContext";
+import ExpandableSection from "../Sections/Section-Expandible";
 import GoalCard from "../GoalCard/GoalCard";
 import SaveModal from "../SaveModal/SaveModal";
 import "./Goals.css";
@@ -35,7 +36,7 @@ function Goals() {
         const fetchedGoals = await fetchGoals(); // Fetch goals from the backend
         setGoals(fetchedGoals);
       } catch (err) {
-        setError("Error fetching goals:", err);
+        setError(err.message || "Error fetching goals");
       }
       setLoading(false);
     };
@@ -65,25 +66,21 @@ function Goals() {
   if (isLoading) return <Loader />;
 
   return (
-    <section ref={goalSectionRef} className="goals-section section">
-      <h2 className="goals__title">Your Goals</h2>
-      <ul className="goals__list">
-        {goals.map((goal) => (
-          <GoalCard
-            key={goal._id}
-            goal={goal}
-            onSaveClick={() => openSaveModal(goal)}
-          />
-        ))}
-      </ul>
-      {selectedGoal ? (
-        <SaveModal
-          selectedGoal={selectedGoal}
-          handleSave={handleSave}
-          isVisible={isGoalSectionVisible}
-        />
-      ) : null}
-    </section>
+    <>
+      {/* Expandable Goals List */}
+      <ExpandableSection
+        title="Your Goals"
+        items={goals}
+        renderItem={(goal, index) => <GoalCard key={index} goal={goal} />}
+      />
+
+      {/* Goal Modal */}
+      <SaveModal
+        selectedGoal={selectedGoal}
+        handleSave={handleSave}
+        isVisible={isGoalSectionVisible}
+      />
+    </>
   );
 }
 export default Goals;

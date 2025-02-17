@@ -26,7 +26,6 @@ export const login = ({email, password}) => {
     return res
     });
   }catch(err) {
-    console.log("error")
     throw new Error(err.message || 'login failed');
   }
   

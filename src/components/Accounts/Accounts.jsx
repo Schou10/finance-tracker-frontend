@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { syncAccounts } from "../../utils/plaidApi";
 import AccountCard from "../AccountCard/AccountCard";
 import Loader from "../Loader/Loader";
-import Notification from "../Notification/Notification";
+import ExpandableSection from "../Sections/Section-Expandible";
 import AppContext from "../../context/AppContext";
 import "./Accounts.css";
 
@@ -27,14 +27,13 @@ function Accounts() {
   if (loading) return <Loader />;
 
   return (
-    <section className="accounts section">
-      <h2 className="accounts__title">User Accounts</h2>
-      <ul className="accounts__list">
-        {accounts?.map((account) => (
-          <AccountCard key={account.name} account={account} />
-        ))}
-      </ul>
-    </section>
+    <ExpandableSection
+      title="Your Accounts"
+      items={accounts}
+      renderItem={(account, index) => (
+        <AccountCard key={index} account={account} />
+      )}
+    />
   );
 }
 

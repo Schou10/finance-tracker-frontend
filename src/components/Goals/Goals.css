@@ -1,21 +1,4 @@
 @import url("../Sections/Sections.css");
-.goals-section {
-  padding: 20px;
-}
-
-.goals__list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  list-style: none;
-  padding: 0;
-}
-
-.goals h2 {
-  font-size: 1.5rem;
-  margin: 0 0 1rem;
-}
-
 .goals__card {
   background: #f9f9f9;
   border: 1px solid #ddd;

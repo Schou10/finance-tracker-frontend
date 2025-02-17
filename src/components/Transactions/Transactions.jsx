@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import TransactionCard from "../TransactionCard/TransactionCard";
 import Loader from "../Loader/Loader.jsx";
 import { syncTransactions } from "../../utils/plaidApi.js";
-import Notification from "../Notification/Notification";
+import ExpandableSection from "../Sections/Section-Expandible.jsx";
 import "./Transactions.css";
 import AppContext from "../../context/AppContext.js";
 
@@ -22,7 +22,7 @@ function Transactions() {
         const currentTransactions = await syncTransactions();
         setTransactions(currentTransactions);
       } catch (err) {
-        setError("Error fetching transaction data:", err);
+        setError(err.message || "Error fetching transaction data");
       } finally {
         setLoading(false);
       }
@@ -34,20 +34,13 @@ function Transactions() {
   if (loading) return <Loader />;
 
   return (
-    <>
-      {error && <Notification message={error} onClose={() => setError(null)} />}
-      <section className="transactions section">
-        <h2>Recent Transactions</h2>
-        <ul className="transactions__list">
-          {flattenedTransactions?.map((transaction) => (
-            <TransactionCard
-              key={transaction.transaction_id}
-              transaction={transaction}
-            />
-          ))}
-        </ul>
-      </section>
-    </>
+    <ExpandableSection
+      title="Recent Transactions"
+      items={transactions}
+      renderItem={(transaction, index) => (
+        <TransactionCard key={index} transaction={transaction} />
+      )}
+    />
   );
 }
 

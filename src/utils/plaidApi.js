@@ -1,9 +1,8 @@
 import { baseUrl } from "./constants";
 import {request } from "./api";
-console.log(baseUrl);
 // Centralized error handling
 const handleError = (err) => {
-  console.error('API Error:', err.response?.data || err.message);
+  return('API Error:', err.response?.data || err.message);
 };
 
 const create_link_token = async (clientUserId) => {
@@ -33,7 +32,6 @@ const exchange_public_token = async (public_token) => {
         'body': JSON.stringify({ public_token }), // Route to exchange public token for access token
       }})
       const accessToken = response.data.access_token;
-      console.log(accessToken);
       return accessToken;
   }catch (err) {
     handleError(err); 
@@ -51,7 +49,6 @@ const syncAccounts = async () => {
         'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     }}); // Route to get accounts from plaid api to connect to user account
     const accountData =  await response.json();
-    console.log("Account Data", accountData.accounts);
     return accountData.accounts;
   } catch (err) {
     handleError(err);
@@ -67,7 +64,6 @@ const syncTransactions = async () =>{
         'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     }}); // Route to get transactions from plaid api to connect to user account
     const transactionData = await response.json();
-    console.log("Transaction Data", transactionData);
     return transactionData;
   } catch (err) {
     handleError(err);
@@ -87,7 +83,7 @@ const saveAccountData = async ({accounts, item_id}) => {
     });
     return await response.json()
   } catch (err) {
-    console.error('Error saving account data:', err);
+    return(err.message || 'Error saving account data');
   }
 };
 
@@ -101,7 +97,7 @@ const saveTransactionData = async (transactions) => {
         'body': JSON.stringify({ transactions }), // Route to save transactions to local server 
      }});
   } catch (err) {
-    console.error('Error saving transaction data:', err);
+    return(err.message || 'Error saving transaction data');
   }
 };
 // Gets Accounts from Local Server
@@ -115,7 +111,7 @@ const fetchAccountData = async () => {
       }}); // Route to get accounts from local server
     return response.data;
   } catch (err) {
-    console.error('Error fetching account data:', err);
+    return(err.message ||'Error fetching account data');
   }
 };
 //Gets Transactions from Local Server
@@ -129,10 +125,27 @@ const fetchTransactionData = async () => {
     }}); // Route to get transactions from local server
     return response.data;
   } catch (err) {
-    console.error('Error fetching transaction data:', err);
+    return(err.message || 'Error fetching transaction data');
+  }
+};
+
+const getBudgetOverview = async () => {
+  try {
+    const response = await request(`${baseUrl}/budget/overview`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',   // Route to get budget overview from local server 
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+      },
+    });
+    const budgetData = response;
+    return budgetData;
+  } catch (err) {
+    console.error(err);
+    return(err.message || 'Error fetching budget overview')
   }
 };
 
 
 
-export { create_link_token, exchange_public_token, syncTransactions, syncAccounts, saveAccountData, saveTransactionData, fetchAccountData, fetchTransactionData}
+export { create_link_token, exchange_public_token, syncTransactions, syncAccounts, saveAccountData, saveTransactionData, fetchAccountData, fetchTransactionData, getBudgetOverview}

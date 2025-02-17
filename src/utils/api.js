@@ -1,5 +1,4 @@
 import { baseUrl } from "./constants";
-console.log(baseUrl);
 export const headers = {Accept: "application/json",
   "Content-Type": "application/json",}
 

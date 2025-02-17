@@ -23,12 +23,10 @@ function LoginModal({ handleLogin, isOpen, switchModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("Logging in...");
       await handleLogin(data);
       setError(null);
     } catch (err) {
       setError("Invalid email or password");
-      console.log(err);
     }
   };
 
