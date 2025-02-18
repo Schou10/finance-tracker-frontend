@@ -1,0 +1,94 @@
+.card {
+  margin: 20px 0;
+  border-radius: 10px;
+  padding: 10px;
+  background: rgb(240, 240, 240);
+  color: #000;
+  width: 60%;
+  transition: width 0.5s;
+  position: relative;
+  min-width: 348px;
+}
+.card:hover {
+  width: 75%;
+}
+
+.card-increase {
+  border: #4b8a3a 6px solid;
+}
+
+.card-decrease {
+  border: #8a3a4b 6px solid;
+}
+.card__headiing {
+}
+.card__title {
+  margin: 0;
+  max-width: 50%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.card__content {
+  display: flex;
+  align-items: center;
+}
+
+.card__amount,
+.card__date {
+  margin: 0 20px 0;
+}
+
+.card__amount span {
+  font-size: 1.5em;
+}
+
+.card__image-background {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: calc(100% - 50%);
+  right: 0;
+}
+
+.image-increase {
+  background: linear-gradient(to top right, #005500, #fff);
+}
+
+.image-decrease {
+  background: linear-gradient(to top right, #550000, #fff);
+}
+
+.card__image {
+  width: 50%;
+}
+
+@media screen and (max-width: 1125px) {
+  .card__content {
+    flex-direction: column;
+  }
+  .card__image-background {
+    top: -15px;
+    right: -15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    min-width: 75%;
+  }
+  .card:hover {
+    width: 85%;
+  }
+  .card__content {
+    flex-direction: column;
+  }
+  .card__image-background {
+    top: -15px;
+    right: -15px;
+  }
+}
